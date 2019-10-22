@@ -29,6 +29,8 @@ import { SidemenuComponent } from './admin/screen/sidemenu/sidemenu.component';
 import { Dashboard1Component } from './admin/screen/dashboard1/dashboard1.component';
 import { AddComponent } from './admin/screen/role/add/add.component';
 import { TestComponent } from './test/test.component';
+import { DesignationComponent } from './admin/screen/designation/designation.component';
+import { ModuleComponent } from './admin/screen/module/module.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { TestComponent } from './test/test.component';
     SidemenuComponent,
     Dashboard1Component,
     AddComponent,
-    TestComponent
+    TestComponent,
+    DesignationComponent,
+    ModuleComponent
   ],
   imports: [
     BrowserModule,

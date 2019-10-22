@@ -8,6 +8,8 @@ import { AuthGuard } from './auth.guard';
 import { DashboardComponent } from './admin/screen/dashboard/dashboard.component';
 import { AddComponent } from './admin/screen/role/add/add.component';
 import { TestComponent } from './test/test.component';
+import { ModuleComponent } from './admin/screen/module/module.component';
+import { DesignationComponent } from './admin/screen/designation/designation.component';
 //import { PermissionComponent } from './admin/screen/permission/permission.component';
 
 
@@ -25,6 +27,18 @@ const routes: Routes = [
   {
     path:'user',
     component:UserComponent,
+    canActivate:[AuthGuard]
+
+  },
+  {
+    path:'designation',
+    component:DesignationComponent,
+    canActivate:[AuthGuard]
+
+  },
+  {
+    path:'module',
+    component:ModuleComponent,
     canActivate:[AuthGuard]
 
   },
