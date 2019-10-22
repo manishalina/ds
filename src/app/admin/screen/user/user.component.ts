@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
 
   constructor(private _userService:UserService) { }
   errorMsg = '';
+  pageTitle = 'User List';
   public users =[];
   roles = [
     {name:'admin', id:'1'},

@@ -31,6 +31,7 @@ export class RoleComponent implements OnInit {
   constructor(private _roleService : RoleService) { }
 
   errorMsg = '';
+  pageTitle = 'Role List';
   public roles = [];
   public add_permission =true;
   public edit_permission =true;

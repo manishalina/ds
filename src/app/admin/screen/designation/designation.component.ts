@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class DesignationComponent implements OnInit {
 
   constructor() { }
-
+pageTitle="Designation List";
   ngOnInit() {
   }
 

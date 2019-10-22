@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PermissionComponent implements OnInit {
 
   constructor() { }
-
+  pageTitle="Permission List";
   ngOnInit() {
   }
 

@@ -14,6 +14,13 @@
           </div>
           
           <!--permission_mep-->
+          <div class="col md-12 form-group">
+            <select class="form-controle" (change)="getModuleName($event.target.value)" >
+              <option>Select Module</option>
+              <option *ngFor="let modulename of modules;index as i" value="{{i}}" [disabled]="modulename.isSelected">{{modulename.name}}</option>
+              
+            </select>
+           </div>
           <div formArrayName="permission_mep">
             <div *ngFor="let address of myForm.controls.permission_mep.controls; let i=index" class="panel panel-default">
               <div class="panel-heading ">
@@ -22,12 +29,13 @@
                   X 
                 </a>
               </div>
+             
               <div class="panel-body" [formGroupName]="i" class="col-md-12 border">
                 <div class="row">
                 <div class="form-group col-md-6">
                   
-                  <input type="checkbox" class="form-control1" formControlName="module">
-                  <label>Module</label>
+                  <!-- <input type="checkbox" class="form-control1" formControlName="module"> -->
+                  <label>{{address.value.module}}</label>
                 </div>
               </div>
               <div class="row">
@@ -49,18 +57,18 @@
                     </div>
                   
                 </div>
-                      <a class="pull-right" *ngIf="j == address.controls.phonenumber.controls.length-1" (click)="addNumber(permission_mep)" style="float: right">Alternate Number +</a>
+                      <!-- <a class="pull-right" *ngIf="j == address.controls.phonenumber.controls.length-1" (click)="addNumber(permission_mep)" style="float: right">Alternate Number +</a> -->
                 </div>
               </div>
               </div>
             </div>
           </div>
   
-          <div class="margin-20">
+          <!-- <div class="margin-20">
             <a (click)="addAddress()" style="cursor: default; float: right">
               New address +
             </a>
-          </div>
+          </div> -->
   
           <div class="margin-20">
             <button type="submit" class="btn btn-primary pull-right" >Submit</button>
