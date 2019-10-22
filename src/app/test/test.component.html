@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="margin-20">
+          <h4>Add customer</h4>
+        </div>
+        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+          <div class="form-group">
+            <label>Role Name</label>
+            <input type="text" class="form-control" formControlName="name">
+            <small *ngIf="!myForm.controls.name.valid" class="text-danger">
+                Name is required (minimum 5 characters).
+              </small>
+          </div>
+          
+          <!--permission_mep-->
+          <div formArrayName="permission_mep">
+            <div *ngFor="let address of myForm.controls.permission_mep.controls; let i=index" class="panel panel-default">
+              <div class="panel-heading ">
+                <span>Address {{i + 1}}</span>
+                <a  *ngIf="myForm.controls.permission_mep.controls.length > 1" (click)="removeAddress(i)" style="cursor: default; float: right">
+                  X 
+                </a>
+              </div>
+              <div class="panel-body" [formGroupName]="i" class="col-md-12 border">
+                <div class="row">
+                <div class="form-group col-md-6">
+                  
+                  <input type="checkbox" class="form-control1" formControlName="module">
+                  <label>Module</label>
+                </div>
+              </div>
+              <div class="row">
+                <div formArrayName="phonenumber" *ngFor="let number of myForm.controls.permission_mep.controls[i].controls.phonenumber.controls; let j=index" class="col-md-6">
+                  <div [formGroupName]="j" >
+                    <div  class="form-group" style="padding-right:0px" >
+                      <label></label>
+                      <!-- <a  *ngIf="address.controls.phonenumber.controls.length > 1" (click)="removeNumber(permission_mep, j)" style="cursor: default; float: right">X</a> -->
+                      <!-- <div *ngFor="let p1 of number[0] ;"> -->
+                      <input type="checkbox" class=""  placeholder="Enter Number"  formControlName="add">
+                      <label for="">Add</label>
+                      <input type="checkbox" class=""  placeholder="Enter Number" formControlName="edit">
+                      <label for="">Edit</label>
+                      <input type="checkbox" class=""  placeholder="Enter Number" formControlName="delete">
+                      <label for="">Delete</label>
+                      <input type="checkbox" class=""  placeholder="Enter Number" formControlName="view">
+                      <label for="">View</label>
+                    <!-- </div> -->
+                    </div>
+                  
+                </div>
+                      <a class="pull-right" *ngIf="j == address.controls.phonenumber.controls.length-1" (click)="addNumber(permission_mep)" style="float: right">Alternate Number +</a>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="margin-20">
+            <a (click)="addAddress()" style="cursor: default; float: right">
+              New address +
+            </a>
+          </div>
+  
+          <div class="margin-20">
+            <button type="submit" class="btn btn-primary pull-right" >Submit</button>
+          </div>
+          <div class="clearfix"></div>
+  
+          <div class="margin-20">
+            <pre>form value: <br>{{myForm.value | json}}</pre>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

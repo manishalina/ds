@@ -1,0 +1,88 @@
+
+
+
+ <button type="button" class="btn btn-info btn-lg"  (click)="openPopup()">Add</button>
+<!-- </div> -->
+
+
+<div class="modal fade" [class.show]="showPopup" [style.display]="showPopup?'block':'none'" id="myModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+       
+        <h4 class="modal-title">Modal Header</h4>
+        <button type="button" class="close" (click)="closePopup()">&times;</button>
+      </div>
+      <div class="modal-body">
+         <form class="form-horizontal" #userForm="ngForm" (ngSubmit)="onSubmit()">
+           <hr/>
+           {{userForm.value | json }}
+           <div class="row form-group">
+            <div class="col-sm-6 form-group">
+              <label>Department</label>
+              <select name="department" class="form-control" id="" [(ngModel)]="userModel.department" #department="ngModel">
+                  <option [ngValue]="department.id" *ngFor="let department of departments">{{department.email}}</option>
+              </select>
+              <!-- <span class="text text-danger" *ngIf="department.invalid" >Invalid value</span> -->
+            </div>
+            <div class="col-sm-6 form-group">
+              <label>Role</label>
+              <select name="role" class="form-control" id="" [(ngModel)]="userModel.role" #role="ngModel">
+                  <option [ngValue]="role.id" *ngFor="let role of roles">{{role.email}}</option>
+              </select>
+              <span class="text text-danger" *ngIf="role.invalid">Invalid value</span>
+            </div>
+            </div>
+           <div class="row form-group">
+           <div class="col-sm-6 form-group">
+             <label>Email</label>
+             <input type="email" class="form-control" name="email" required="" [(ngModel)]="userModel.email" #email="ngModel">
+             <span class="text text-danger" *ngIf="email.invalid">Invalid value</span>
+           </div>
+
+           <div class="col-sm-6 form-group">
+             <label>Mobile</label>
+             <input type="text" class="form-control" name="mobile" required="" [(ngModel)]="userModel.mobile" #mobile="ngModel">
+             <span class="text text-danger" *ngIf="mobile.invalid">Invalid value</span>
+           </div>
+           </div>
+
+           <div class="col-sm-12">
+             <button [disabled]="userForm.invalid" class="btn btn-primary">Save</button>
+           </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<table class="table">
+
+    <thead>
+        <th>SNO</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Department</th>
+        <th>Role</th>
+        <th>Designation</th>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let user of users;index as i;">
+            <td>{{i+1}}</td>
+            <td>{{user.profile.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.profile.department.name}}</td>
+            <td>{{user.role.name}}</td>
+            <td>{{user.profile.designation.name}}</td>
+        </tr>
+    </tbody>
+
+</table>
