@@ -50,14 +50,14 @@
                                       <div class="col-sm-6 form-group">
                                         <label>Department</label>
                                         <select name="department" class="form-control" id="" [(ngModel)]="userModel.department" #department="ngModel">
-                                            <option [ngValue]="department.id" *ngFor="let department of departments">{{department.email}}</option>
+                                            <option [ngValue]="department._id" *ngFor="let department of departments">{{department.name}}</option>
                                         </select>
                                         <!-- <span class="text text-danger" *ngIf="department.invalid" >Invalid value</span> -->
                                       </div>
                                       <div class="col-sm-6 form-group">
                                         <label>Role</label>
                                         <select name="role" class="form-control" id="" [(ngModel)]="userModel.role" #role="ngModel">
-                                            <option [ngValue]="role.id" *ngFor="let role of roles">{{role.email}}</option>
+                                            <option [ngValue]="role._id" *ngFor="let role of roles">{{role.name}}</option>
                                         </select>
                                         <span class="text text-danger" *ngIf="role.invalid">Invalid value</span>
                                       </div>
@@ -69,11 +69,7 @@
                                       <span class="text text-danger" *ngIf="email.invalid">Invalid value</span>
                                     </div>
                           
-                                    <div class="col-sm-6 form-group">
-                                      <label>Mobile</label>
-                                      <input type="text" class="form-control" name="mobile" required="" [(ngModel)]="userModel.mobile" #mobile="ngModel">
-                                      <span class="text text-danger" *ngIf="mobile.invalid">Invalid value</span>
-                                    </div>
+                                 
                                     </div>
                           
                                     <div class="col-sm-12">
@@ -107,9 +103,9 @@
                                         <td>{{i+1}}</td>
                                         <td>{{user.profile.name}}</td>
                                         <td>{{user.email}}</td>
-                                        <td>{{user.profile.department.name}}</td>
-                                        <td>{{user.role.name}}</td>
-                                        <td>{{user.profile.designation.name}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.email}}</td>
                                     </tr>
                                     </tbody>
                                 </table>

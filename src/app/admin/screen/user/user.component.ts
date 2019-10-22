@@ -28,21 +28,21 @@ export class UserComponent implements OnInit {
     
   this._userService.getUser().subscribe(data=>{
      //console.log("data",data.data)
-     this.users =(this._userService.decrypt(data.data,'kingjuliean'));
+     this.users =data;
     },
     error=>this.errorMsg=error
     );
 
 
     this._userService.getRol().subscribe(data=>{
-        this.roles =(this._userService.decrypt(data.data,'kingjuliean'));
+        this.roles =data;
         console.log("data",this.roles)
       },
       error=>this.errorMsg=error
     );
 
     this._userService.getDepartment().subscribe(data=>{
-        this.departments =(this._userService.decrypt(data.data,'kingjuliean'));
+        this.departments =data;
         console.log("data",this.roles)
       },
       error=>this.errorMsg=error

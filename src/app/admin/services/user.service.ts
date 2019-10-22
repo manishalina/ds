@@ -22,22 +22,50 @@ export class UserService {
   getUser():Observable<any>{
     this._url = "http://192.168.10.3:3200/api/users";
     return this.http.get<any>(this._url).pipe(
-    retry(1),
-    ).catch(this.errorHandar);          
+      map(data => {
+        //console.log('res ',data);
+        this.mydata =this.decrypt(data.data,'kingjuliean');
+        // console.log('my data',this.mydata);
+        // console.log('my data',this.mydata.code);
+        return this.mydata;
+        // if(this.mydata.code == 1){
+        //   if(this.mydata.isData==1){
+        //     return this.mydata;
+        //   }
+        // }
+        return false;
+     }
+    )).catch(this.errorHandar);          
   }
 
   getRol():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/users";
+    this._url = "http://192.168.10.3:3200/api/roles";
     return this.http.get<any>(this._url).pipe(
-    retry(1),
-    ).catch(this.errorHandar);          
+      map(data => {
+        console.log('roles ',data);
+        if(data.code == 1){
+          if(data.isData==1){
+            return data.result;
+          }
+        }
+        return false;
+     }
+    )).catch(this.errorHandar);          
   }
   
   getDepartment():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/users";
+    this._url = "http://192.168.10.3:3200/api/departments";
     return this.http.get<any>(this._url).pipe(
-    retry(1),
-    ).catch(this.errorHandar);          
+      map(data => {
+       console.log('department ',data);
+        if(data.code == 1){
+          if(data.isData==1){
+            return data.result;
+          }
+        }
+        return false;
+     }
+    )).catch(this.errorHandar);          
   }
 
   // getUser():Observable<IUser[]>{
