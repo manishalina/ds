@@ -103,6 +103,8 @@ const routes: Routes = [
     component:AddComponent,
     canActivate:[AuthGuard]
   },
+
+  { path: 'customer-list', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
   // // {
   // //   path:'permission',
   // //   component:PermissionComponent

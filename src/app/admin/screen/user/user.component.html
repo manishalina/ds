@@ -1,127 +1,104 @@
 
-
-<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-  <!-- top header         -->
-  <app-menu></app-menu>
-  <!-- top header         -->
-
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="pe-7s-car icon-gradient bg-mean-fruit">
+                    </i>
+                </div>
+                <div>{{pageTitle}}</div>
+            </div>
+            <div class="page-title-actions">
+                <button type="button" class="btn btn-info btn-lg"  (click)="openPopup()">Add</button>
+            </div>    
+          </div>
+    </div>            
+    <div class="">
       
-
-      <div class="app-main">
-               <!-- side menu code start         -->
-                  <app-sidemenu></app-sidemenu>
-              <!-- side menu code end         -->
-
-              <div class="app-main__outer">
-                  <div class="app-main__inner">
-                      <div class="app-page-title">
-                          <div class="page-title-wrapper">
-                              <div class="page-title-heading">
-                                  <div class="page-title-icon">
-                                      <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                                      </i>
-                                  </div>
-                                  <div>{{pageTitle}}</div>
-                              </div>
-                              <div class="page-title-actions">
-                                  <button type="button" class="btn btn-info btn-lg"  (click)="openPopup()">Add</button>
-                              </div>    
-                            </div>
-                      </div>            
-                      <div class="">
-                        
-                        <!-- </div> -->
-                          <div class="modal fade" [class.show]="showPopup" [style.display]="showPopup?'block':'none'" id="myModal" role="dialog">
-                            <div class="modal-dialog modal-lg">
-                            
-                              <!-- Modal content-->
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                
-                                  <h4 class="modal-title">Modal Header</h4>
-                                  <button type="button" class="close" (click)="closePopup()">&times;</button>
-                                </div>
-                                <div class="modal-body">
-                                  <form class="form-horizontal" #userForm="ngForm" (ngSubmit)="onSubmit()">
-                                    <hr/>
-                                    {{userForm.value | json }}
-                                    <div class="row form-group">
-                                      <div class="col-sm-6 form-group">
-                                        <label>Department</label>
-                                        <select name="department" class="form-control" id="" [(ngModel)]="userModel.department" #department="ngModel">
-                                            <option [ngValue]="department._id" *ngFor="let department of departments">{{department.name}}</option>
-                                        </select>
-                                        <!-- <span class="text text-danger" *ngIf="department.invalid" >Invalid value</span> -->
-                                      </div>
-                                      <div class="col-sm-6 form-group">
-                                        <label>Role</label>
-                                        <select name="role" class="form-control" id="" [(ngModel)]="userModel.role" #role="ngModel">
-                                            <option [ngValue]="role._id" *ngFor="let role of roles">{{role.name}}</option>
-                                        </select>
-                                        <span class="text text-danger" *ngIf="role.invalid">Invalid value</span>
-                                      </div>
-                                      </div>
-                                    <div class="row form-group">
-                                    <div class="col-sm-6 form-group">
-                                      <label>Email</label>
-                                      <input type="email" class="form-control" name="email" required="" [(ngModel)]="userModel.email" #email="ngModel">
-                                      <span class="text text-danger" *ngIf="email.invalid">Invalid value</span>
-                                    </div>
-                          
-                                 
-                                    </div>
-                          
-                                    <div class="col-sm-12">
-                                      <button [disabled]="userForm.invalid" class="btn btn-primary">Save</button>
-                                    </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-                                </div>
-                              </div>
-                              
-                            </div>
-                          </div>
-
-                          <div class="main-card mb-3 card">
-                            <div class="card-body"><h5 class="card-title">{{pageTitle}}</h5>
-                                <table class="mb-0 table">
-                                    <thead>
-                                    <tr>
-                                      <th>SNO</th>
-                                      <th>Name</th>
-                                      <th>Email</th>
-                                      <th>Department</th>
-                                      <th>Role</th>
-                                      <th>Designation</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr *ngFor="let user of users;index as i;">
-                                        <td>{{i+1}}</td>
-                                        <td>{{user.profile.name}}</td>
-                                        <td>{{user.email}}</td>
-                                        <td>{{user.email}}</td>
-                                        <td>{{user.email}}</td>
-                                        <td>{{user.email}}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                          </div>
-
-                      </div>
-                     
-                  </div>
-                  
-                  
-                  <app-footer></app-footer>  
-
+      <!-- </div> -->
+        <div class="modal fade" [class.show]="showPopup" [style.display]="showPopup?'block':'none'" id="myModal" role="dialog">
+          <div class="modal-dialog modal-lg">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+              
+                <h4 class="modal-title">Modal Header</h4>
+                <button type="button" class="close" (click)="closePopup()">&times;</button>
               </div>
-              <!-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
-      </div>
-  </div>
+              <div class="modal-body">
+                <form class="form-horizontal" #userForm="ngForm" (ngSubmit)="onSubmit()">
+                  <hr/>
+                  {{userForm.value | json }}
+                  <div class="row form-group">
+                    <div class="col-sm-6 form-group">
+                      <label>Department</label>
+                      <select name="department" class="form-control" id="" [(ngModel)]="userModel.department" #department="ngModel">
+                          <option [ngValue]="department._id" *ngFor="let department of departments">{{department.name}}</option>
+                      </select>
+                      <!-- <span class="text text-danger" *ngIf="department.invalid" >Invalid value</span> -->
+                    </div>
+                    <div class="col-sm-6 form-group">
+                      <label>Role</label>
+                      <select name="role" class="form-control" id="" [(ngModel)]="userModel.role" #role="ngModel">
+                          <option [ngValue]="role._id" *ngFor="let role of roles">{{role.name}}</option>
+                      </select>
+                      <span class="text text-danger" *ngIf="role.invalid">Invalid value</span>
+                    </div>
+                    </div>
+                  <div class="row form-group">
+                  <div class="col-sm-6 form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email" required="" [(ngModel)]="userModel.email" #email="ngModel">
+                    <span class="text text-danger" *ngIf="email.invalid">Invalid value</span>
+                  </div>
+        
+                
+                  </div>
+        
+                  <div class="col-sm-12">
+                    <button [disabled]="userForm.invalid" class="btn btn-primary">Save</button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+              </div>
+            </div>
+            
+          </div>
+        </div>
 
+        <div class="main-card mb-3 card">
+          <div class="card-body"><h5 class="card-title">{{pageTitle}}</h5>
+              <table class="mb-0 table">
+                  <thead>
+                  <tr>
+                    <th>SNO</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                    <th>Role</th>
+                    <th>Designation</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of users;index as i;">
+                      <td>{{i+1}}</td>
+                      <td>{{user.profile.name}}</td>
+                      <td>{{user.email}}</td>
+                      <td>{{user.email}}</td>
+                      <td>{{user.email}}</td>
+                      <td>{{user.email}}</td>
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
 
-
+    </div>
+    
+</div>
+                  
+                  
