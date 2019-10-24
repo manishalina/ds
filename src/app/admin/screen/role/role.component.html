@@ -139,10 +139,11 @@
                         <td>{{i+1}}</td>
                         <td>{{role.name}}</td>
                         <td>
-                            <a href="" class="ml-1 btn btn-info">Edit</a>
-                            <a href="" class="ml-1 btn btn-danger">Delete</a>
-                            <a href="" class="ml-1 btn btn-success">Active</a>
-                            <a href="" class="ml-1 btn btn-warning">Deactive</a>
+                            <a class="ml-1 btn btn-info" routerLink="/edit-role" (click)="editRole(role._id)" >Edit</a>
+                            <button class="ml-1 btn btn-danger" (click)="deleteRole(role._id)">Delete</button>
+                            <!-- <a href="" class="ml-1 btn btn-danger">Delete</a> -->
+                            <!-- <a href="" class="ml-1 btn btn-success">Active</a> -->
+                            <!-- <a href="" class="ml-1 btn btn-warning">Deactive</a> -->
                         </td>
                     </tr>
                 </tbody>

@@ -31,6 +31,12 @@ import { AddComponent } from './admin/screen/role/add/add.component';
 import { TestComponent } from './test/test.component';
 import { DesignationComponent } from './admin/screen/designation/designation.component';
 import { ModuleComponent } from './admin/screen/module/module.component';
+import { SetPasswordComponent } from './set-password/set-password.component';
+
+import { ArchwizardModule } from 'ng2-archwizard';
+import { Test1Component } from './test1/test1.component';
+import { Test2Component } from './test2/test2.component';
+import { EditRoleComponent } from './admin/screen/role/edit-role/edit-role.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +58,11 @@ import { ModuleComponent } from './admin/screen/module/module.component';
     AddComponent,
     TestComponent,
     DesignationComponent,
-    ModuleComponent
+    ModuleComponent,
+    SetPasswordComponent,
+    Test1Component,
+    Test2Component,
+    EditRoleComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +71,7 @@ import { ModuleComponent } from './admin/screen/module/module.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    ArchwizardModule,
 	  ToastrModule.forRoot()
   ],
   providers: [AuthService,AuthGuard,{

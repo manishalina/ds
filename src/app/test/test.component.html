@@ -13,7 +13,7 @@
               </small>
           </div>
           
-          <!--permission_mep-->
+          <!--permission_map-->
           <div class="col md-12 form-group">
             <select class="form-controle" (change)="getModuleName($event.target.value)" >
               <option>Select Module</option>
@@ -21,11 +21,11 @@
               
             </select>
            </div>
-          <div formArrayName="permission_mep">
-            <div *ngFor="let address of myForm.controls.permission_mep.controls; let i=index" class="panel panel-default">
+          <div formArrayName="permission_map">
+            <div *ngFor="let address of myForm.controls.permission_map.controls; let i=index" class="panel panel-default">
               <div class="panel-heading ">
                 <span>Address {{i + 1}}</span>
-                <a  *ngIf="myForm.controls.permission_mep.controls.length > 1" (click)="removeAddress(i)" style="cursor: default; float: right">
+                <a  *ngIf="myForm.controls.permission_map.controls.length > 1" (click)="removeAddress(i)" style="cursor: default; float: right">
                   X 
                 </a>
               </div>
@@ -39,25 +39,25 @@
                 </div>
               </div>
               <div class="row">
-                <div formArrayName="phonenumber" *ngFor="let number of myForm.controls.permission_mep.controls[i].controls.phonenumber.controls; let j=index" class="col-md-6">
+                <div formArrayName="permission" *ngFor="let number of myForm.controls.permission_map.controls[i].controls.permission.controls; let j=index" class="col-md-6">
                   <div [formGroupName]="j" >
                     <div  class="form-group" style="padding-right:0px" >
                       <label></label>
-                      <!-- <a  *ngIf="address.controls.phonenumber.controls.length > 1" (click)="removeNumber(permission_mep, j)" style="cursor: default; float: right">X</a> -->
+                      <!-- <a  *ngIf="address.controls.permission.controls.length > 1" (click)="removeNumber(permission_map, j)" style="cursor: default; float: right">X</a> -->
                       <!-- <div *ngFor="let p1 of number[0] ;"> -->
-                      <input type="checkbox" class=""  placeholder="Enter Number"  formControlName="add">
+                      <input type="checkbox" class="" value="1"  placeholder="Enter Number"  formControlName="add">
                       <label for="">Add</label>
-                      <input type="checkbox" class=""  placeholder="Enter Number" formControlName="edit">
+                      <input type="checkbox" class=""  value="2" placeholder="Enter Number" formControlName="edit">
                       <label for="">Edit</label>
-                      <input type="checkbox" class=""  placeholder="Enter Number" formControlName="delete">
+                      <input type="checkbox" class=""  value="3" placeholder="Enter Number" formControlName="delete">
                       <label for="">Delete</label>
-                      <input type="checkbox" class=""  placeholder="Enter Number" formControlName="view">
+                      <input type="checkbox" class=""  value="4" placeholder="Enter Number" formControlName="view">
                       <label for="">View</label>
                     <!-- </div> -->
                     </div>
                   
                 </div>
-                      <!-- <a class="pull-right" *ngIf="j == address.controls.phonenumber.controls.length-1" (click)="addNumber(permission_mep)" style="float: right">Alternate Number +</a> -->
+                      <!-- <a class="pull-right" *ngIf="j == address.controls.permission.controls.length-1" (click)="addNumber(permission_map)" style="float: right">Alternate Number +</a> -->
                 </div>
               </div>
               </div>

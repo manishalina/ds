@@ -11,6 +11,11 @@ import { TestComponent } from './test/test.component';
 import { ModuleComponent } from './admin/screen/module/module.component';
 import { DesignationComponent } from './admin/screen/designation/designation.component';
 import { PermissionComponent } from './admin/screen/permission/permission.component';
+import { SetPasswordComponent } from './set-password/set-password.component';
+import { Test1Component } from './test1/test1.component';
+import { Test2Component } from './test2/test2.component';
+import { EditRoleComponent } from './admin/screen/role/edit-role/edit-role.component';
+//import { PermissionComponent } from './admin/screen/permission/permission.component';
 
 
 const routes: Routes = [
@@ -19,6 +24,11 @@ const routes: Routes = [
     path:'',
     redirectTo:'dashboard',
     pathMatch:'full'
+  },
+  {
+    path:'set_password',
+    component:SetPasswordComponent,
+    canActivate:[AuthGuard]
   },
   {
     path:'login',
@@ -55,10 +65,27 @@ const routes: Routes = [
     canActivate:[AuthGuard]
 
   },
+  {
+    path:'test1',
+    component:Test1Component,
+    canActivate:[AuthGuard]
+
+  },
+   {
+    path:'test2',
+    component:Test2Component,
+    canActivate:[AuthGuard]
+
+  },
 
   {
     path:'role',
     component:RoleComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'edit-role',
+    component:EditRoleComponent,
     canActivate:[AuthGuard]
   },
   {

@@ -39,63 +39,7 @@
                           
                             <div class="container">
                                 
-    <!-- <button [style.display]="add_permission?'block':'none'" type="button" class="btn btn-info btn-lg"  (click)="openPopup()">Add</button> -->
-    
-
-    <!-- <form [formGroup]="bioSection" (ngSubmit)="callingFunction()">
-        {{bioSection.value | json}}
-        <h3>Bio Details
-    </h3>
-    
-      <label>
-        First Name:
-        <input type="text" formControlName="name">
-      </label> <br>
-  
-    <div formGroupName="moduleDetail">
-        <h3>Module Details</h3>
-    
-        <label>
-          Stack:
-          <input type="text" formControlName="module">
-        </label> <br>
-        <div formGroupName="permission">
-                <h3>permission Details</h3>
-            <label>
-            Stack:
-            <input type="text" formControlName="pr">
-            </label> <br>
-        </div>
-        
-    </div>
-
-    <div formGroupName="moduleDetail">
-            <h3>Module Details</h3>
-        
-            <label>
-              Stack:
-              <input type="text" formControlName="module">
-            </label> <br>
-            <div formGroupName="permission">
-                    <h3>permission Details</h3>
-                <label>
-                Stack:
-                <input type="text" formControlName="pr">
-                </label> <br>
-            </div>
-            
-        </div>
-    
-    <button type="submit" [disabled]="!bioSection.valid">Submit Application</button>
-      <p>
-        Real-time data: {{ bioSection.value | json }}
-      </p>
-      <p>
-        Your form status is : {{ bioSection.status }}
-      </p>
-    </form> -->
-
-
+ 
 
     <div *ngIf="isValidFormSubmitted" class="submitted"> Form submitted successfully. </div>
 
@@ -111,8 +55,9 @@
                 <div class="mb-2 mr-sm-12 mb-sm-0 position-relative form-group">
                   <label for="name" class="mr-sm-2">Role Name</label>
                   <input name="text" id="name" placeholder="Role Name" [(ngModel)]="rolename" type="text" class="form-control">
+                  <input name="role_id" id="role_id" [(ngModel)]="roleid" type="hidden" class="form-control">
                 </div>
-                <p>{{rolename}}</p>
+                
             </form>
             <div class="divider"></div>
             <div *ngFor="let modulename of modules;index as i">
@@ -128,7 +73,7 @@
                   <div class="col-sm-8">
                       <div *ngFor="let pr of permission; index as j" class="position-relative form-check form-check-inline">
                           <label class="">
-                            <input type="checkbox"  id={{pr._id}} (click)="setPermissionFn(pr._id,modulename._id)" class="form-check-input">{{pr.name}}</label>
+                            <input type="checkbox"  [checked]="checkIfInMediaFromLead(pr._id,modulename._id)"  id={{pr._id}} (click)="setPermissionFn(pr._id,modulename._id)" class="form-check-input">{{pr.name}}</label>
                       </div>
                   </div>
                 </div>

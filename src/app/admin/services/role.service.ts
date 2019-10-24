@@ -1,27 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { IUser } from '../interface/user';
-//import { Employee } from './employeeModel';
-//import { Observable } from 'rxjs';
-
 import { Observable } from 'rxjs/Observable';
 import  'rxjs/add/operator/catch';
 import  'rxjs/add/observable/throw';
 import { map } from 'rxjs/internal/operators/map';
-import { catchError } from 'rxjs/internal/operators/catchError';
 import { retry } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleService {
-  _router: any;
-
-  constructor(private http:HttpClient) { }
+  
+  constructor(private http:HttpClient,private _router:Router) { }
   private _url:string = "http://192.168.10.3:3200/api/roles";
 
   getRole():Observable<any>{
-    this._url = "http://192.168.10.4:3200/api/roles";
+    this._url = "http://192.168.10.3:3200/api/roles";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         console.log('res ',data);
@@ -68,7 +64,7 @@ export class RoleService {
     this._url = "http://192.168.10.3:3200/api/modules";
     return this.http.get<any>(this._url).pipe(
       map(data => {
-        //console.log('res ',data);
+        console.log('res ',data);
         if(data.code == 1){
           if(data.isData==1){
             return data.result;
@@ -92,7 +88,7 @@ export class RoleService {
   // }
 
   errorHandar(error){
-    console.log(error.message);
+    console.log('erro',error.message);
     if(error.status !== 200){
       alert(error.message);
     }
@@ -100,6 +96,63 @@ export class RoleService {
 
   }
 
+  getRoleId(){
+    return localStorage.getItem('editRoleId')?localStorage.getItem('editRoleId'):'';
+  }
+  saveRole(roles){
+     this._url="http://192.168.10.3:3200/api/roles/create";
+   
+     return this.http.put<any>(this._url,roles)
+             .pipe(map(data => {
+               console.log(data);
+               if(data.code == 1){
+                localStorage.removeItem('editRoleId');
+                if(data.isData==1){
+                  //return data.result;
+                  //return data.result;
+                }
+              }
+               //
+               this._router.navigate(['/role']);
+              return true;
+            })).catch(this.errorHandar);
+  	//return this.http.post<any>(this._url,login).catch(this.errorHandar);
+  }
+//   saveRole(roles){
+//     this._url="http://192.168.10.3:3200/api/roles/create";
+  
+//     return this.http.post<any>(this._url,roles)
+//             .pipe(map(data => {
+//               console.log(data);
+//               if(data.code == 1){
+//                localStorage.removeItem('editRoleId');
+//                if(data.isData==1){
+//                  //return data.result;
+//                  //return data.result;
+//                }
+//              }
+//               //
+//               this._router.navigate(['/role']);
+//              return true;
+//            })).catch(this.errorHandar);
+//    //return this.http.post<any>(this._url,login).catch(this.errorHandar);
+//  }
+  deleteRole(roles){
+    this._url="http://192.168.10.3:3200/api/role/delete";
+    let options= {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      body: roles,
+    };
+    return this.http.delete<any>(this._url,options).pipe(map(data => {
+      if(data.code == 1){
+        return true;
+      }else{
+        return false;
+      }
+   })).catch(this.errorHandar);
+ }
+
+ 
   public mydata;
   public mydata1;
 encrypt(o, salt) {

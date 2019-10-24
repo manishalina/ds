@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../classes/users';
 import { Role } from '../../classes/role';
 import { RoleService } from '../../services/role.service';
+import { Router } from '@angular/router';
+import { HttpParams, HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
@@ -28,7 +30,9 @@ export class RoleComponent implements OnInit {
     
   //   "role_id":""
   //   }
-  constructor(private _roleService : RoleService) { }
+  constructor(private _roleService : RoleService,
+    private _router:Router,
+    private http:HttpClient) { }
 
   errorMsg = '';
   pageTitle = 'Role List';
@@ -63,24 +67,37 @@ export class RoleComponent implements OnInit {
 
     ngOnInit() {
 
-       this._roleService.getRole().subscribe(data=>
-            this.roles = data,
-            error=>this.errorMsg=error
-            );
+       this.loadRole();
 
-            // getmodule
-            // getpermission
-
-            // this._roleService.getpermission().subscribe(data=>
-            //   console.log('getpermission',data),
-            //   error=>this.errorMsg=error
-            //   );
-            //console.log('load role',this.roles)
-
+        
     }
+  loadRole(){
+    this._roleService.getRole().subscribe(data=>
+      this.roles = data,
+      error=>this.errorMsg=error
+      );
+  }
+   
+    editRole(id): void {
+      localStorage.removeItem("editRoleId");
+      localStorage.setItem("editRoleId", id.toString());
+      this._router.navigate(['edit-role']);
+    };
   
-   
-   
+
+    deleteRole(id): void {
+      let obj = {'role_id':id};
+      this._roleService.deleteRole(obj).subscribe(data=>
+       {
+         if(data){
+          this.loadRole();
+         }
+       },
+        error=>this.errorMsg=error
+        );
+    
+      
+    }
   
 
     userModel = new User('','','','');
