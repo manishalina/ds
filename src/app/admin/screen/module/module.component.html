@@ -13,7 +13,7 @@
 </div>
 </div>
 <div class="page-title-actions">
-<a  class="btn btn-info btn-lg" routerLink="#">Add Module</a>
+<a  class="btn btn-info btn-lg" routerLink="/module/add">Add Module</a>
 </div>
 </div>
 </div>            
@@ -21,18 +21,22 @@
 <div class="container">
 <div class="main-card mb-3 card">
 <div class="card-body"><h5 class="card-title">{{pageTitle}}</h5>
-<table class="mb-0 table">
-<thead>
-<tr>
-<th>SNO</th>
-<th>Name</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
-
-</tbody>
-</table>
+    <table class="mb-0 table">
+        <thead>
+        <tr>
+            <th>SNO</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor ="let module of modules;index as i;">
+                <td>{{i+1}}</td>
+                <td>{{module.name}}</td>
+                <td>Action</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 </div>
 </div>

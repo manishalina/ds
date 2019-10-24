@@ -15,6 +15,8 @@ import { SetPasswordComponent } from './set-password/set-password.component';
 import { Test1Component } from './test1/test1.component';
 import { Test2Component } from './test2/test2.component';
 import { EditRoleComponent } from './admin/screen/role/edit-role/edit-role.component';
+import { AddModuleComponent } from './admin/screen/module/add-module/add-module.component';
+import { EditModuleComponent } from './admin/screen/module/edit-module/edit-module.component';
 //import { PermissionComponent } from './admin/screen/permission/permission.component';
 
 
@@ -56,6 +58,18 @@ const routes: Routes = [
   {
     path:'module',
     component:ModuleComponent,
+    canActivate:[AuthGuard]
+
+  },
+  {
+    path:'module/add',
+    component:AddModuleComponent,
+    canActivate:[AuthGuard]
+
+  },
+  {
+    path:'module/edit',
+    component:EditModuleComponent,
     canActivate:[AuthGuard]
 
   },

@@ -1,0 +1,65 @@
+
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+              
+                <div>Module List
+                    <!-- <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
+                    </div> -->
+                </div>
+            </div>
+            <div class="page-title-actions">
+                    <a  class="btn btn-info btn-lg"  routerLink="/module">List</a>
+            </div>    
+        </div>
+    </div>            
+                              
+    <div class="container">
+      <div *ngIf="isValidFormSubmitted" class="submitted"> Form submitted successfully. </div>
+      <div class="main-card mb-3 card">
+          <div class="card-body"><h5 class="card-title"></h5>
+              <div>
+                  <form class="form-inline">
+                      <div class="mb-2 mr-sm-12 mb-sm-0 position-relative form-group">
+                        <label for="name" class="mr-sm-2">Module</label>
+                        <select name="" id="">
+                            <option value="">Select Module</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                        </select>
+                      </div>
+
+                      <div class="mb-2 mr-sm-12 mb-sm-0 position-relative form-group">
+                        <label for="name" class="mr-sm-2">Module Name</label>
+                        <input name="text" id="name" placeholder="Role Name" [(ngModel)]="rolename" type="text" class="form-control">
+                      </div>
+                  </form>
+                  <div class="divider"></div>
+                 
+                  <div class="divider"></div>
+                  <button class="btn btn-primary" (click)="finalfn()">Submit</button>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+  
+              <div class="margin-20">
+                <h4>Add customer</h4>
+              </div>
+  
+      
+  
+            
+              
+  
+            
+            </div>
+          </div>
+      </div>                      
+    </div>
+  </div>
+                          
+                         

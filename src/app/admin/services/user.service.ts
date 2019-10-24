@@ -10,17 +10,17 @@ import  'rxjs/add/observable/throw';
 import { map } from 'rxjs/internal/operators/map';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { retry } from 'rxjs/operators';
-
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
+  public apiPath = environment.apiPath;
   constructor(private http:HttpClient) { }
-  private _url:string = "http://192.168.10.3:3200/api/users";
+  private _url:string = this.apiPath+"/api/users";
 
   getUser():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/users";
+    this._url = this.apiPath+"/api/users";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         //console.log('res ',data);
@@ -39,7 +39,7 @@ export class UserService {
   }
 
   getRol():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/roles";
+    this._url = this.apiPath+"/api/roles";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         console.log('roles ',data);
@@ -54,7 +54,7 @@ export class UserService {
   }
   
   getDepartment():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/departments";
+    this._url = this.apiPath+"/api/departments";
     return this.http.get<any>(this._url).pipe(
       map(data => {
        console.log('department ',data);

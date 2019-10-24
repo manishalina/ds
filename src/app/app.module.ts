@@ -37,6 +37,8 @@ import { ArchwizardModule } from 'ng2-archwizard';
 import { Test1Component } from './test1/test1.component';
 import { Test2Component } from './test2/test2.component';
 import { EditRoleComponent } from './admin/screen/role/edit-role/edit-role.component';
+import { AddModuleComponent } from './admin/screen/module/add-module/add-module.component';
+import { EditModuleComponent } from './admin/screen/module/edit-module/edit-module.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { EditRoleComponent } from './admin/screen/role/edit-role/edit-role.compo
     SetPasswordComponent,
     Test1Component,
     Test2Component,
-    EditRoleComponent
+    EditRoleComponent,
+    AddModuleComponent,
+    EditModuleComponent
   ],
   imports: [
     BrowserModule,

@@ -8,20 +8,20 @@ import  'rxjs/add/observable/throw';
 import { map } from 'rxjs/operators';
 //import { AppRoutingModule } from './app-routing.module';
 import {Router} from "@angular/router"
+import { environment } from '../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  
+  public apiPath = environment.apiPath;
   private _url:string = "";
   constructor(private http:HttpClient,private _router: Router) { }
-
 
   loginUser(login:Login){
     //console.log(login);
     let mdata:any=login;
-    this._url="http://192.168.10.3:3200/api/login";
+    this._url=this.apiPath+"/api/login";
     this.mydata =this.encrypt(login,'kingjuliean');
     this.mydata1={data:this.mydata}
     console.log(this.mydata1);

@@ -7,17 +7,18 @@ import  'rxjs/add/observable/throw';
 import { map } from 'rxjs/internal/operators/map';
 import { retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleService {
-  
+  public apiPath = environment.apiPath;
   constructor(private http:HttpClient,private _router:Router) { }
-  private _url:string = "http://192.168.10.3:3200/api/roles";
+  private _url:string = this.apiPath+"/api/roles";
 
   getRole():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/roles";
+    this._url = this.apiPath+"/api/roles";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         console.log('res ',data);
@@ -32,7 +33,7 @@ export class RoleService {
   }
 
   getRol():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/users";
+    this._url = this.apiPath+"/api/users";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         console.log('res ',data);
@@ -47,7 +48,7 @@ export class RoleService {
   }
 
   getpermission():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/permissions";
+    this._url = this.apiPath+"/api/permissions";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         //console.log('res ',data);
@@ -61,7 +62,7 @@ export class RoleService {
     )).catch(this.errorHandar);          
   }
   getmodule():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/modules";
+    this._url = this.apiPath+"/api/modules";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         console.log('res ',data);
@@ -76,7 +77,7 @@ export class RoleService {
   }
   
   getDepartment():Observable<any>{
-    this._url = "http://192.168.10.3:3200/api/users";
+    this._url = this.apiPath+"/api/users";
     return this.http.get<any>(this._url).pipe(
     retry(1),
     ).catch(this.errorHandar);          
@@ -100,7 +101,7 @@ export class RoleService {
     return localStorage.getItem('editRoleId')?localStorage.getItem('editRoleId'):'';
   }
   saveRole(roles){
-     this._url="http://192.168.10.3:3200/api/roles/create";
+     this._url=this.apiPath+"/api/roles/create";
    
      return this.http.put<any>(this._url,roles)
              .pipe(map(data => {
@@ -119,7 +120,7 @@ export class RoleService {
   	//return this.http.post<any>(this._url,login).catch(this.errorHandar);
   }
 //   saveRole(roles){
-//     this._url="http://192.168.10.3:3200/api/roles/create";
+//     this._url=this.apiPath+"/api/roles/create";
   
 //     return this.http.post<any>(this._url,roles)
 //             .pipe(map(data => {
@@ -138,7 +139,7 @@ export class RoleService {
 //    //return this.http.post<any>(this._url,login).catch(this.errorHandar);
 //  }
   deleteRole(roles){
-    this._url="http://192.168.10.3:3200/api/role/delete";
+    this._url=this.apiPath+"/api/role/delete";
     let options= {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       body: roles,
