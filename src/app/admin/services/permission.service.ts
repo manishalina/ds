@@ -9,11 +9,10 @@ import { retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class DepartmentService {
+export class PermissionService {
 
   public apiPath = environment.apiPath;
   public _url;
@@ -22,8 +21,8 @@ export class DepartmentService {
     private _router:Router
     ){}
 
-    getDepartment():Observable<any>{
-      this._url = this.apiPath+"/api/departments";
+    getPermission():Observable<any>{
+      this._url = this.apiPath+"/api/permissions";
       return this.http.get<any>(this._url).pipe(
         map(data => {
           console.log('dep ',data);

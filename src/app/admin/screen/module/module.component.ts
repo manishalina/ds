@@ -15,10 +15,31 @@ public errorMsg:any;
     ) { }
   pageTitle='Module List'
   ngOnInit() {
+   this.loadModule();
+  }
+
+  loadModule(){
     this._moduleService.getmodule().subscribe(data=>
       this.modules = data,
       error=>this.errorMsg=error
       );
   }
-
+  editmodule(id){
+    localStorage.removeItem("editModuleId");
+    localStorage.setItem("editModuleId", id.toString());
+    this._router.navigate(['module-edit']);
+  }
+  deleteRole(id): void {
+    let obj = {'module_id':id};
+    this._moduleService.deleteModule(obj).subscribe(data=>
+     {
+       if(data){
+        this.loadModule();
+       }
+     },
+      error=>this.errorMsg=error
+      );
+  
+    
+  }
 }

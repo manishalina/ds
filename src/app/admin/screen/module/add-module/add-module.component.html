@@ -20,25 +20,32 @@
       <div class="main-card mb-3 card">
           <div class="card-body"><h5 class="card-title"></h5>
               <div>
-                  <form class="form-inline">
-                      <div class="mb-2 mr-sm-12 mb-sm-0 position-relative form-group">
+                  <form class="">
+                      <div class="col-sm-6">
                         <label for="name" class="mr-sm-2">Module</label>
-                        <select name="" id="">
-                            <option value="">Select Module</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
+                        <select name="parent_id" [(ngModel)]="parent_id" class="mb-2 form-control-lg form-control" (change)="onChange($event.target.value)">
+                          <option value="" selected>Parent</option>
+                            <ng-container *ngFor="let module of modules;index as i">
+                                <option *ngIf="!module.isParent"  [ngValue]="module._id" >{{module.name}}</option>
+                              </ng-container>
                         </select>
                       </div>
 
-                      <div class="mb-2 mr-sm-12 mb-sm-0 position-relative form-group">
+                      <div class="col-sm-6">
                         <label for="name" class="mr-sm-2">Module Name</label>
-                        <input name="text" id="name" placeholder="Role Name" [(ngModel)]="rolename" type="text" class="form-control">
+                        <input name="text" id="name" placeholder="Role Name" [(ngModel)]="name" type="text" class="form-control">
+                      </div>
+
+
+                      <div class="col-sm-6">
+                        <label for="name" class="mr-sm-2">Module Url</label>
+                        <input name="text" id="name" placeholder="Role Name" [(ngModel)]="url" type="text" class="form-control">
                       </div>
                   </form>
                   <div class="divider"></div>
                  
                   <div class="divider"></div>
-                  <button class="btn btn-primary" (click)="finalfn()">Submit</button>
+                  <button class="btn btn-primary" (click)="onsave()">Submit</button>
               </div>
           </div>
       </div>

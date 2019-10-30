@@ -68,7 +68,7 @@ const routes: Routes = [
 
   },
   {
-    path:'module/edit',
+    path:'module-edit',
     component:EditModuleComponent,
     canActivate:[AuthGuard]
 
@@ -76,7 +76,7 @@ const routes: Routes = [
   {
     path:'test',
     component:TestComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
 
   },
   {

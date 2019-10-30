@@ -26,6 +26,8 @@
         <tr>
             <th>SNO</th>
             <th>Name</th>
+            <th>URL</th>
+            <th>Name</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -33,7 +35,14 @@
             <tr *ngFor ="let module of modules;index as i;">
                 <td>{{i+1}}</td>
                 <td>{{module.name}}</td>
-                <td>Action</td>
+                <td>{{module.url}}</td>
+                <td>
+        
+                    {{module.isParent?module.parent_id.name:'Parent'}}</td>
+                <td>
+                        <a class="ml-1 btn btn-info" (click)="editmodule(module._id)" >Edit</a>
+                        <button class="ml-1 btn btn-danger" (click)="deleteRole(module._id)">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -1,84 +1,125 @@
-<div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="margin-20">
-          <h4>Add customer</h4>
-        </div>
-        <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
-          <div class="form-group">
-            <label>Role Name</label>
-            <input type="text" class="form-control" formControlName="name">
-            <small *ngIf="!myForm.controls.name.valid" class="text-danger">
-                Name is required (minimum 5 characters).
-              </small>
-          </div>
-          
-          <!--permission_map-->
-          <div class="col md-12 form-group">
-            <select class="form-controle" (change)="getModuleName($event.target.value)" >
-              <option>Select Module</option>
-              <option *ngFor="let modulename of modules;index as i" value="{{i}}" [disabled]="modulename.isSelected">{{modulename.name}}</option>
-              
-            </select>
-           </div>
-          <div formArrayName="permission_map">
-            <div *ngFor="let address of myForm.controls.permission_map.controls; let i=index" class="panel panel-default">
-              <div class="panel-heading ">
-                <span>Address {{i + 1}}</span>
-                <a  *ngIf="myForm.controls.permission_map.controls.length > 1" (click)="removeAddress(i)" style="cursor: default; float: right">
-                  X 
-                </a>
-              </div>
-             
-              <div class="panel-body" [formGroupName]="i" class="col-md-12 border">
-                <div class="row">
-                <div class="form-group col-md-6">
-                  
-                  <!-- <input type="checkbox" class="form-control1" formControlName="module"> -->
-                  <label>{{address.value.module}}</label>
-                </div>
-              </div>
-              <div class="row">
-                <div formArrayName="permission" *ngFor="let number of myForm.controls.permission_map.controls[i].controls.permission.controls; let j=index" class="col-md-6">
-                  <div [formGroupName]="j" >
-                    <div  class="form-group" style="padding-right:0px" >
-                      <label></label>
-                      <!-- <a  *ngIf="address.controls.permission.controls.length > 1" (click)="removeNumber(permission_map, j)" style="cursor: default; float: right">X</a> -->
-                      <!-- <div *ngFor="let p1 of number[0] ;"> -->
-                      <input type="checkbox" class="" value="1"  placeholder="Enter Number"  formControlName="add">
-                      <label for="">Add</label>
-                      <input type="checkbox" class=""  value="2" placeholder="Enter Number" formControlName="edit">
-                      <label for="">Edit</label>
-                      <input type="checkbox" class=""  value="3" placeholder="Enter Number" formControlName="delete">
-                      <label for="">Delete</label>
-                      <input type="checkbox" class=""  value="4" placeholder="Enter Number" formControlName="view">
-                      <label for="">View</label>
-                    <!-- </div> -->
+demo
+
+<div>demo</div>
+
+
+
+
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        <div class="app-main">
+           <div class="app-main__outer">
+              <div class="app-main__inner">
+                 <!----   Changes for aarti ------>
+                 <div class="row">
+                    <div id="sortable">
+                       <div class="card ui-state-default">
+                          <div class="card-header">
+                             <div class="float-left col-md-6">Featured</div>
+                             <div class="float-right col-md-6 aarti">
+                                <ul class="ab">
+                                   <li class="list-inline-item">
+                                      <a href="#" id="exampleModalLongTitle" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                                   </li>
+                                   <li class="list-inline-item">
+                                      <a href="#"><i class="fa fa-bell"></i></a>
+                                      <span class="fas fa-exclamation bellicon" aria-hidden="true"></span>
+                                   </li>
+                                   <li class="list-inline-item">
+                                      <a href="#" id="exampleModalLongTitle3"data-toggle="exampleModalLongTitle3" data-target=".bd-example-modal-sm"><i class="fa fa-flag" aria-hidden="true"></i></a>
+                                   </li>
+                                   <li class="list-inline-item">
+                                      <a href="#"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                   </li>
+                                   <li class="list-inline-item">
+                                      <i class="fa fa-times" aria-hidden="true"></i>
+                                   </li>
+                                </ul>
+                             </div>
+                          </div>
+                          <div class="card-body divcenter">
+                             <h5 class="card-title"></h5>
+                             <p class="card-text">ghdfkjhgkhkflhlxhjflxdj;lgjfkdlglxdhsglxdshgjgfzjxdhsxdhsxdhsxdhsxdhsfg</p>
+                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Configure Widget modal</button>
+                          </div>
+                       </div>
                     </div>
-                  
-                </div>
-                      <!-- <a class="pull-right" *ngIf="j == address.controls.permission.controls.length-1" (click)="addNumber(permission_map)" style="float: right">Alternate Number +</a> -->
-                </div>
+                 </div>
+                 <!----  end  Changes for aarti ------>
               </div>
+              <div class="app-wrapper-footer">
               </div>
+           </div>
+        </div>
+     </div>
+
+
+     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel">Configure Widget</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <form class="">
+                        <div class="position-relative form-group"><label for="exampleEmail" class="">Widget Title</label><input name="email" id="exampleEmail" placeholder="with a placeholder" type="email" class="form-control"></div>
+                        <div class="position-relative form-group">
+                           <label for="exampleSelect" class="">Website</label>
+                           <select name="select" id="exampleSelect" class="form-control">
+                              <option>abc</option>
+                              <option>xyz</option>
+                              <option>jgfjs</option>
+                              <option>jfdf</option>
+                              <option>sdhfka</option>
+                           </select>
+                        </div>
+                        <div class="position-relative form-group">
+                           <label for="exampleSelect" class="">Metric</label>
+                           <select name="select" id="exampleSelect" class="form-control">
+                              <option>sfssf</option>
+                              <option>fg</option>
+                              <option>dsrgdf</option>
+                              <option>gdg</option>
+                              <option>fdgd</option>
+                           </select>
+                        </div>
+                        <div class="position-relative form-group">
+                           <label for="exampleSelect" class="">Segment</label>
+                           <select name="select" id="exampleSelect" class="form-control">
+                              <option>sfssf</option>
+                              <option>fg</option>
+                              <option>dsrgdf</option>
+                              <option>gdg</option>
+                              <option>fdgd</option>
+                           </select>
+                        </div>
+                        <div class="position-relative form-group"><label for="examplePassword" class="">Filters </label><input name="password" id="examplePassword" placeholder="placeholder" type="password"class="form-control"></div>
+                        <button class="mt-1 btn btn-primary">Save Widget</button>
+                        <button class="mt-1 btn btn-primary">Cancel</button>
+                     </form>
+                  </div>
+               </div>
             </div>
-          </div>
-  
-          <!-- <div class="margin-20">
-            <a (click)="addAddress()" style="cursor: default; float: right">
-              New address +
-            </a>
-          </div> -->
-  
-          <div class="margin-20">
-            <button type="submit" class="btn btn-primary pull-right" >Submit</button>
-          </div>
-          <div class="clearfix"></div>
-  
-          <div class="margin-20">
-            <pre>form value: <br>{{myForm.value | json}}</pre>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+         </div>
+         <!-- Small modal start1 -->
+         <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLongTitle">Widget Alert</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <p>Alerts allow you to monitor metrics even when you're away from your dashboards. You can set up email or SMS notifications to go out when certain conditions are met (e.g. when your website's traffic level drops).</p>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-primary">Upgrade</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- Small modal end1 -->

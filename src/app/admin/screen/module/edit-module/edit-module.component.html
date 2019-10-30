@@ -1,1 +1,72 @@
-<p>edit-module works!</p>
+
+<div class="app-main__inner">
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+              
+                <div>Module List
+                    <!-- <div class="page-title-subheading">This is an example dashboard created using build-in elements and components.
+                    </div> -->
+                </div>
+            </div>
+            <div class="page-title-actions">
+                    <a  class="btn btn-info btn-lg"  routerLink="/module">List</a>
+            </div>    
+        </div>
+    </div>            
+                              
+    <div class="container">
+      <div *ngIf="isValidFormSubmitted" class="submitted"> Form submitted successfully. </div>
+      <div class="main-card mb-3 card">
+          <div class="card-body"><h5 class="card-title"></h5>
+              <div>
+                  <form class="">
+                      <div class="col-sm-6">
+                        <label for="name" class="mr-sm-2">Module</label>
+                        <select name="parent_id" [(ngModel)]="parent_id" class="mb-2 form-control-lg form-control" (change)="onChange($event.target.value)">
+                          <option value="" selected>Parent</option>
+                            <ng-container *ngFor="let module of modules;index as i">
+                                <option *ngIf="!module.isParent" [ngValue]="module._id" >{{module.name}}</option>
+                              </ng-container>
+                        </select>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <label for="name" class="mr-sm-2">Module Name</label>
+                        <input name="text" id="name" placeholder="Role Name" [(ngModel)]="name" type="text" class="form-control">
+                      </div>
+
+
+                      <div class="col-sm-6">
+                        <label for="name" class="mr-sm-2">Module Url</label>
+                        <input name="text" id="name" placeholder="Role Name" [(ngModel)]="url" type="text" class="form-control">
+                      </div>
+                  </form>
+                  <div class="divider"></div>
+                 
+                  <div class="divider"></div>
+                  <button class="btn btn-primary" (click)="onsave()">Submit</button>
+              </div>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+  
+              <div class="margin-20">
+                <h4>Add customer</h4>
+              </div>
+  
+      
+  
+            
+              
+  
+            
+            </div>
+          </div>
+      </div>                      
+    </div>
+  </div>
+                          
+                         

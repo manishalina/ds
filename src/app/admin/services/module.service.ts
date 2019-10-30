@@ -34,4 +34,49 @@ export class ModuleService {
      }
     )).catch(this.errorHandar);          
   }
+  saveModule(module){
+    this._url=this.apiPath+"/api/modules/create";
+  
+    return this.http.put<any>(this._url,module)
+            .pipe(map(data => {
+              console.log(data);
+              if(data.code == 1){
+               //localStorage.removeItem('editRoleId');
+               if(data.isData==1){
+                 //return data.result;
+                 //return data.result;
+               }
+             }
+              //
+             // this._router.navigate(['/module']);
+             return true;
+           })).catch(this.errorHandar);
+   //return this.http.post<any>(this._url,login).catch(this.errorHandar);
+ }
+
+ getModuleId(){
+  return localStorage.getItem('editModuleId')?localStorage.getItem('editModuleId'):'';
+}
+deleteModule(module){
+  this._url=this.apiPath+"/api/modules/delete";
+  let options= {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    body: module,
+  };
+  return this.http.delete<any>(this._url,options).pipe(map(data => {
+    if(data.code == 1){
+      return true;
+    }else{
+      return false;
+    }
+ })).catch(this.errorHandar);
+}
+  errorHandar(error){
+    console.log('erro',error.message);
+    if(error.status !== 200){
+      alert(error.message);
+    }
+  	return Observable.throw(error.message || "Server Error");
+
+  }
 }

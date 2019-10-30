@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PermissionService } from '../../services/permission.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-permission',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PermissionComponent implements OnInit {
 
-  constructor() { }
-  pageTitle="Permission List";
-  ngOnInit() {
-  }
+  public permissions:any;
+  public errorMsg:any;
+    constructor(private _permissionService : PermissionService,
+      private _router:Router
+      ) { }
+    pageTitle='Permission List'
+    ngOnInit() {
+      this._permissionService.getPermission().subscribe(data=>
+        this.permissions = data,
+        error=>this.errorMsg=error
+        );
+    }
 
 }

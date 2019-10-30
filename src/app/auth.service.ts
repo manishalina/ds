@@ -25,7 +25,7 @@ export class AuthService {
     this.mydata =this.encrypt(login,'kingjuliean');
     this.mydata1={data:this.mydata}
     console.log(this.mydata1);
-    localStorage.setItem('token', 'abc');
+    //localStorage.setItem('token', 'abc');
     return this.http.post<any>(this._url,this.mydata1)
             .pipe(map(data => {
                this.mydata =this.decrypt(data.data,'kingjuliean');
