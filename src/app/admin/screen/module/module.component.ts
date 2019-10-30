@@ -29,7 +29,9 @@ public errorMsg:any;
     localStorage.setItem("editModuleId", id.toString());
     this._router.navigate(['module-edit']);
   }
+  
   deleteRole(id): void {
+
     let obj = {'module_id':id};
     this._moduleService.deleteModule(obj).subscribe(data=>
      {

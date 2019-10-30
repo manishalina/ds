@@ -26,11 +26,14 @@ public errorMsg:any;
     "isParent":this.isParent,
     "parent_id":this.parent_id
   }
+
     console.log('save',module);
     this._moduleService.saveModule(module).subscribe(data=>
       console.log(data),
       error=>this.errorMsg=error
     );
+
+    this._router.navigateByUrl('/module');
   }
 
   ngOnInit() {
