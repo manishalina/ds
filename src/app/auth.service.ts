@@ -33,7 +33,10 @@ export class AuthService {
                 if(this.mydata.isData==1){
                   localStorage.setItem('token', this.mydata.result.token.auth_token);
                   console.log(this.mydata.result.token.auth_token);
-                  this._router.navigate(['/dashboard']);
+                  console.log(this.mydata.result.profile);
+                  localStorage.setItem('username', this.mydata.result.profile.name);
+                  //this._router.navigateByUrl('/dashboard');
+                  window.location.href= '/dashboard';
                 }
               }else{
                 localStorage.removeItem('token');
@@ -57,9 +60,12 @@ export class AuthService {
 
   loggedOut(){
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     this._router.navigate(['/login']);
   }
-
+  getUsername(){
+    return localStorage.getItem('username')?localStorage.getItem('username'):'';
+  }
   getToken(){
     return localStorage.getItem('token')?localStorage.getItem('token'):'';
   }
