@@ -90,10 +90,9 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css",
               "assets/css/materialdesignicons.min.css",
               "assets/css/style.css",
-               "assets/css/vendor.bundle.base.css"
+              "assets/css/vendor.bundle.base.css"
             ],
             "scripts": [
               "assets/js/template.js",

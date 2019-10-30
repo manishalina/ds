@@ -39,7 +39,10 @@ import { Test2Component } from './test2/test2.component';
 import { EditRoleComponent } from './admin/screen/role/edit-role/edit-role.component';
 import { AddModuleComponent } from './admin/screen/module/add-module/add-module.component';
 import { EditModuleComponent } from './admin/screen/module/edit-module/edit-module.component';
-
+import { OtpComponent } from './otp/otp.component';
+import { SettingComponent } from './setting/setting.component';
+import { VerifyComponent } from './verify/verify.component';
+//import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +69,10 @@ import { EditModuleComponent } from './admin/screen/module/edit-module/edit-modu
     Test2Component,
     EditRoleComponent,
     AddModuleComponent,
-    EditModuleComponent
+    EditModuleComponent,
+    OtpComponent,
+    SettingComponent,
+    VerifyComponent
   ],
   imports: [
     BrowserModule,

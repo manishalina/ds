@@ -1,29 +1,18 @@
-<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        <div class="app-main">
-        <div class="container">
-           
-                
-        <div class="row11" id="msform1">
-        <wizard>
-            <wizard-step stepTitle="OTP" >
+
+
+ <div class="row11" id="msform1">
+        <div>
+            <div stepTitle="OTP"  *ngIf="otp">
                 <fieldset>
                 <h2 class="fs-title">OTP</h2>
                 <h3 class="fs-subtitle">This is step 1</h3>
-                <input type="text" name="email" placeholder="Enter Your OTP" />
-        
+                <input type="text" name="otp" placeholder="Enter Your OTP" [(ngModel)]="otpValue" />
+                <button type="button" class="btn btn-warning" (click)="verifyOTP()" >Verify Otp</button>
                 
-        
-                
-                <!-- <input type="button" name="next" class="next action-button" value="Next" /> -->.
-                <div>
-                    <button type="button" class="btn btn-warning"  nextStep>Next Step</button>
-                </div>
                 </fieldset>
+            </div>
         
-            
-            </wizard-step>
-        
-            <wizard-step stepTitle="Password" awOptionalStep>
+            <div stepTitle="Password"  *ngIf="password">
                 <fieldset>
                 <h2 class="fs-title">Set Password</h2>
                 <h3 class="fs-subtitle">This is step 2</h3>
@@ -32,15 +21,11 @@
         
                 <div class="text text-left"><label  for="">Confirm Password</label></div>  
                 <input type="text" name="cpassword" placeholder="Confirm Password" />
-                <div>
-                    <button type="button" class="btn btn-warning" previousStep>Go to previous step</button>
-                    <button type="button" class="btn btn-warning" nextStep>Go to next step</button>
-                </div>
+                <button type="button" class="btn btn-warning" (click)="verifyPassword()">Save</button>
                 </fieldset>
                
-               
-            </wizard-step>
-            <wizard-step stepTitle="Authentication" [canEnter]='true'>
+            </div>
+            <div stepTitle="Authentication"  *ngIf="auth">
                 <fieldset>
                 <h2 class="fs-title">Setting</h2>
                 <h3 class="fs-subtitle">Two Factor Authentication</h3>
@@ -63,46 +48,36 @@
                         </div>
                 </div>
         
-                <div>
-                    <button type="button" class="btn btn-warning" previousStep>Go to previous step</button>
-                    <button type="button" class="btn btn-warning" nextStep>Go to next step</button>
-                </div>
+                <button type="button" class="btn btn-warning" (click)="verifySetting()" >Save</button>
                 </fieldset>
         
         
                 
-            </wizard-step>
-            <wizard-step stepTitle="Profile">
+            </div>
+            <div stepTitle="Profile"  *ngIf="profile">
                     <fieldset>
                     <h2 class="fs-title">Setting</h2>
                     <h3 class="fs-subtitle">Two Factor Authentication</h3>
                     <input type="text" name="fname" placeholder="Enter Your Name" />
-                    <input type="file" name=""/>
-                    <div>
-                            <button type="button" class="btn btn-warning" previousStep>Go to previous step</button>
-                            <button type="button" class="btn btn-warning" nextStep>Go to next step</button>
-                    </div>
+                    <input type="text" name="mobile" placeholder="Enter Your Mobile"/>
+                    <button type="button" class="btn btn-warning" (click)="verifyProfile()" >Save</button>
                     </fieldset>
         
                     
-            </wizard-step>
-            <wizard-step stepTitle="Setting">
+            </div>
+            <div stepTitle="Setting"  *ngIf="complete">
                     <fieldset>
-                    <h2 class="fs-title">Setting</h2>
-                    <h3 class="fs-subtitle">Two Factor Authentication</h3>
-                    <input type="text" name="fname" placeholder="Enter Your Name" />
-                    <input type="file" name=""/>
-                    <div>
-                            <button type="button" previousStep>Previous Step</button>
-                            <button type="button" (click)="finishFunction()">Finish</button>
-                    </div>
+                    <h2 class="fs-title">Thanks You registration </h2>
+                   <button (click)="finish()">Finish</button>
                     </fieldset>
         
                     
-            </wizard-step>
-        </wizard>
+            </div>
+
+
+            <div>
+                   
+                </div>
+        </div>
         
-        </div>
-        </div>
-        </div>
         </div>

@@ -11,19 +11,19 @@ color: #ffffff;
 font-weight: normal;
 display: block;
 text-align: center;
-/* vertical-align:middle; */
+/* vertical-align: middle; */
 margin: 5px 0;
 }
 /*form styles*/
 
-#msform {
+#msform1 {
 /*width: 400px;*/
 margin: 50px auto 550px;
 text-align: center;
-position: relative;
+/* position: relative; */
 }
 
-#msform fieldset {
+#msform1 fieldset {
 background: white;
 border: 0 none;
 border-radius: 3px;
@@ -34,17 +34,17 @@ width: 80%;
 margin: 0 10%;
 /*stacking fieldsets above each other*/
 
-position: absolute;
+/* position: absolute; */
 }
 /*Hide all except first fieldset*/
 
-#msform fieldset:not(:first-of-type) {
+#msform1 fieldset:not(:first-of-type) {
 display: none;
 }
 /*inputs*/
 
-#msform input,
-#msform textarea {
+#msform1 input,
+#msform1 textarea {
 padding: 15px;
 border: 1px solid #ccc;
 border-radius: 3px;
@@ -55,9 +55,13 @@ font-family: montserrat;
 color: #2C3E50;
 font-size: 13px;
 }
+#msform1 .auth-check{
+    width: auto !important;
+    padding: 10px;
+}
 /*buttons*/
 
-#msform .action-button {
+#msform1 .action-button {
 width: 100px;
 background: #27AE60;
 font-weight: bold;
@@ -69,8 +73,8 @@ padding: 10px 5px;
 margin: 10px 5px;
 }
 
-#msform .action-button:hover,
-#msform .action-button:focus {
+#msform1 .action-button:hover,
+#msform1 .action-button:focus {
 box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
 }
 /*headings*/
@@ -135,6 +139,6 @@ background: #27AE60;
 color: white;
 }
 
-.auth-check{
-    width: auto !important;
+fieldset{
+    margin: 50px;
 }

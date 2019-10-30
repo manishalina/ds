@@ -17,6 +17,7 @@ import { Test2Component } from './test2/test2.component';
 import { EditRoleComponent } from './admin/screen/role/edit-role/edit-role.component';
 import { AddModuleComponent } from './admin/screen/module/add-module/add-module.component';
 import { EditModuleComponent } from './admin/screen/module/edit-module/edit-module.component';
+import { VerifyComponent } from './verify/verify.component';
 //import { PermissionComponent } from './admin/screen/permission/permission.component';
 
 
@@ -27,11 +28,7 @@ const routes: Routes = [
     redirectTo:'dashboard',
     pathMatch:'full'
   },
-  {
-    path:'set_password',
-    component:SetPasswordComponent,
-    canActivate:[AuthGuard]
-  },
+ 
   {
     path:'login',
     component:LoginComponent
@@ -116,6 +113,16 @@ const routes: Routes = [
     path:'role/add',
     component:AddComponent,
     canActivate:[AuthGuard]
+  },
+  {
+    path:'set_password',
+    component:SetPasswordComponent,
+    //canActivate:[AuthGuard]
+  },
+  {
+    path:'verify',
+    component:VerifyComponent,
+    //canActivate:[AuthGuard]
   },
 
   { path: 'customer-list', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
