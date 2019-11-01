@@ -34,14 +34,14 @@
                   <div class="row form-group">
                     <div class="col-sm-6 form-group">
                       <label>Department</label>
-                      <select name="department" class="form-control" id="" [(ngModel)]="userModel.department" #department="ngModel">
+                      <select name="department" class="form-control" id="" [(ngModel)]="userModel.department_id" #department="ngModel">
                           <option [ngValue]="department._id" *ngFor="let department of departments">{{department.name}}</option>
                       </select>
                       <!-- <span class="text text-danger" *ngIf="department.invalid" >Invalid value</span> -->
                     </div>
                     <div class="col-sm-6 form-group">
                       <label>Role</label>
-                      <select name="role" class="form-control" id="" [(ngModel)]="userModel.role" #role="ngModel">
+                      <select name="role" class="form-control" id="" [(ngModel)]="userModel.role_id" #role="ngModel">
                           <option [ngValue]="role._id" *ngFor="let role of roles">{{role.name}}</option>
                       </select>
                       <span class="text text-danger" *ngIf="role.invalid">Invalid value</span>

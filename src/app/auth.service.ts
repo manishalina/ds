@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpErrorResponse } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse, HttpResponse, HttpHeaders } from '@angular/common/http';
 //import { ILogin } from './login';
 import { Login } from './admin/classes/login';
 import { Observable } from 'rxjs/Observable';
@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 //import { AppRoutingModule } from './app-routing.module';
 import {Router} from "@angular/router"
 import { environment } from '../environments/environment';
+import { ToastService } from './_services/toast.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,34 +17,49 @@ export class AuthService {
 
   public apiPath = environment.apiPath;
   private _url:string = "";
-  constructor(private http:HttpClient,private _router: Router) { }
+  constructor(
+    private http:HttpClient,
+    private _router: Router,
+    private toastService: ToastService
+    ) { }
 
-  loginUser(login:Login){
+    
+
+  loginUser(login:Login):any {
     //console.log(login);
     let mdata:any=login;
     this._url=this.apiPath+"/api/login";
     this.mydata =this.encrypt(login,'kingjuliean');
     this.mydata1={data:this.mydata}
-    console.log(this.mydata1);
+    //console.log(this.mydata1);
+   
     //localStorage.setItem('token', 'abc');
-    return this.http.post<any>(this._url,this.mydata1)
-            .pipe(map(data => {
-               this.mydata =this.decrypt(data.data,'kingjuliean');
-               if(this.mydata.code==1){
-                if(this.mydata.isData==1){
-                  localStorage.setItem('token', this.mydata.result.token.auth_token);
-                  console.log(this.mydata.result.token.auth_token);
-                  console.log(this.mydata.result.profile);
-                  localStorage.setItem('username', this.mydata.result.profile.name);
-                  //this._router.navigateByUrl('/dashboard');
-                  window.location.href= '/dashboard';
-                }
-              }else{
-                localStorage.removeItem('token');
-              }
-               //
-                return true;
-            })).catch(this.errorHandar);
+    //return this.http.post<any>(this._url,this.mydata1).then()
+    // let main_headers = {}
+
+    return this.http.post<any>(this._url,this.mydata1, {observe: 'response'});
+    
+
+
+
+
+
+    // this.http.post(this._url,this.mydata1,
+    //   {'headers' : new HttpHeaders ({})
+    //   , observe:'response',
+    // })
+    //   .subscribe((response:HttpResponse<any>) => {
+    //     console.log(response);
+    //     const keys = response.headers.keys();
+    //     // let headers = keys.map(key => {
+    //     //   // `${key}: ${response.headers.get(key)}`
+    //     //   //   main_headers[key] = response.headers.get(key)
+    //     //     console.log(key,response.headers.get(key));
+    //     //    }
+           
+    //       //);
+    //   });
+            
   	//return this.http.post<any>(this._url,login).catch(this.errorHandar);
   }
 
@@ -59,7 +75,7 @@ export class AuthService {
   }
 
   loggedOut(){
-    localStorage.removeItem('token');
+    localStorage.removeItem('islogin');
     localStorage.removeItem('username');
     this._router.navigate(['/login']);
   }

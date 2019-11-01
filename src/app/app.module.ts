@@ -42,6 +42,9 @@ import { EditModuleComponent } from './admin/screen/module/edit-module/edit-modu
 import { OtpComponent } from './otp/otp.component';
 import { SettingComponent } from './setting/setting.component';
 import { VerifyComponent } from './verify/verify.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastComponent } from './toast/toast.component';
 //import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
@@ -72,7 +75,9 @@ import { VerifyComponent } from './verify/verify.component';
     EditModuleComponent,
     OtpComponent,
     SettingComponent,
-    VerifyComponent
+    VerifyComponent,
+    PageNotFoundComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +87,7 @@ import { VerifyComponent } from './verify/verify.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ArchwizardModule,
+    NgbModule,
 	  ToastrModule.forRoot()
   ],
   providers: [AuthService,AuthGuard,{

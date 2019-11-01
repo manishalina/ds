@@ -100,7 +100,7 @@ export class RoleComponent implements OnInit {
     }
   
 
-    userModel = new User('','','','');
+    userModel = new User('','','');
     //role = new Role('','');
     openPopup(){
       console.log('opened');

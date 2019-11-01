@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { User } from '../../classes/users';
+import { ToastrComponentlessModule } from 'ngx-toastr';
 
 
 @Component({
@@ -14,16 +15,8 @@ export class UserComponent implements OnInit {
   errorMsg = '';
   pageTitle = 'User List';
   public users =[];
-  roles = [
-    {name:'admin', id:'1'},
-    {name:'manager', id:'2'},
-    {name:'Operator', id:'3'},
-  ];
-  departments = [
-    {name:'one', id:'1'},
-    {name:'two', id:'2'},
-    {name:'three', id:'3'},
-  ];
+  roles = [];
+  departments = [];
   ngOnInit() {
   console.log('user records');
     
@@ -54,7 +47,16 @@ export class UserComponent implements OnInit {
  
 
   showPopup=false;
-  userModel = new User('','','','');
+  userModel = new User('','','');
+  onSubmit(){
+    this._userService.saveUser(this.userModel).subscribe(data=>{
+      console.log(data);
+      console.log("data",this.roles)
+    },
+    error=>this.errorMsg=error
+  )
+    console.log(this.userModel);
+  }
   openPopup(){
     console.log('opened');
     this.showPopup = true;

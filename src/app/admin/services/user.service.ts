@@ -18,6 +18,7 @@ export class UserService {
   public apiPath = environment.apiPath;
   constructor(private http:HttpClient) { }
   private _url:string = this.apiPath+"/api/users";
+  //private apiPath:string = 'http://192.168.10.3:3200/';
 
   getUser():Observable<any>{
     this._url = this.apiPath+"/api/users";
@@ -73,6 +74,26 @@ export class UserService {
           
   // }
 
+  saveUser(user){
+    //this._url=this.apiPath+"/api/user/sendEmail";
+    this._url="http://192.168.10.3:3200/api/user/sendEmail";
+  
+    return this.http.post<any>(this._url,user)
+            .pipe(map(data => {
+              console.log(data);
+            //   if(data.code == 1){
+            //    //localStorage.removeItem('editRoleId');
+            //    if(data.isData==1){
+            //      //return data.result;
+            //      //return data.result;
+            //    }
+            //  }
+              //
+             // this._router.navigate(['/module']);
+             return true;
+           })).catch(this.errorHandar);
+   //return this.http.post<any>(this._url,login).catch(this.errorHandar);
+ }
   errorHandar(error:HttpErrorResponse){
     if(error.status !== 200){
       alert('Server Error');

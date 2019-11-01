@@ -14,9 +14,12 @@ export class TokenInterceptorService implements HttpInterceptor{
       
       const authReq = req.clone({
         headers: new HttpHeaders({
-          //'Content-Type':  'application/json',
+          'Content-Type':  'application/json',
+          observe:'response',
+          'responseType': 'text',
           //'Authorization': 'my-auth-token'
-          'auth-token': this._authService.getToken()
+          'auth-token': this._authService.getToken(),
+         // 'user-token': localStorage.getItem('userToken')
         })
       });
       //console.log('Intercepted HTTP call', authReq);

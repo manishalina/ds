@@ -6,9 +6,13 @@
                 <fieldset>
                 <h2 class="fs-title">OTP</h2>
                 <h3 class="fs-subtitle">This is step 1</h3>
-                <input type="text" name="otp" placeholder="Enter Your OTP" [(ngModel)]="otpValue" />
-                <button type="button" class="btn btn-warning" (click)="verifyOTP()" >Verify Otp</button>
-                
+                <span class="text text-danger">{{errorMsg}}</span>
+                <input type="text" [(ngModel)]="userdata.otp" name="otp" placeholder="OTP" class="form-control" required #otp="ngModel"/>
+                <div *ngIf="otp.invalid && otp.touched" class="alert alert-danger">
+                    <div *ngIf="otp.errors.required"> Otp is required. </div>
+                </div>
+                <button  type="button" [disabled]= "userdata.otp.length?false:true"  class="btn btn-warning" (click)="verifyOTP()" >Verify Otp</button>
+                <button  type="button"   class="btn btn-info m-2" (click)="resendOTP()" >Resend OTP</button>
                 </fieldset>
             </div>
         
@@ -16,12 +20,33 @@
                 <fieldset>
                 <h2 class="fs-title">Set Password</h2>
                 <h3 class="fs-subtitle">This is step 2</h3>
-                <div class="text text-left"><label  for="">Password</label></div>  
-                <input type="text" name="password" placeholder="Password" />
+                <!-- <div class="text text-left"><label  for="">Password</label></div>  
+                <input type="text" name="password" [(ngModel)]="passwordValue"  placeholder="Password" />
         
                 <div class="text text-left"><label  for="">Confirm Password</label></div>  
-                <input type="text" name="cpassword" placeholder="Confirm Password" />
-                <button type="button" class="btn btn-warning" (click)="verifyPassword()">Save</button>
+                <input type="text" name="cpassword" [(ngModel)]="cpasswordValue"  placeholder="Confirm Password" />
+                    -->
+
+                    <form #passwordForm="ngForm">
+                        <span class="text text-danger">{{errorMsg}}</span>
+                <div class="form-group">
+                    <input type="password" [(ngModel)]="userdata.password" name="password" placeholder="Password" class="form-control" required #password="ngModel" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+                    <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+                      <div *ngIf="password.errors.required"> Password is required. </div>
+                      <div *ngIf="password.errors.pattern"> Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.</div>
+                    </div>
+                </div>
+                   
+                   <div class="form-group">
+                    <input type="password" [(ngModel)]="userdata.confirmpassword" name="confirmpassword" placeholder="Confirm Password" class="form-control" required #confirmpassword="ngModel" pattern="{{ password.value }}" />
+                    <div *ngIf=" confirmpassword.invalid && confirmpassword.touched" class="alert alert-danger">
+                      <div *ngIf="confirmpassword.errors.required"> Confirm password is required. </div>
+                      <div *ngIf="confirmpassword.errors.pattern"> Password & Confirm Password does not match.</div>
+                    </div>
+                   </div>
+                   
+                <button type="button" [disabled]="passwordForm.invalid" class="btn btn-warning" (click)="verifyPassword()">Save</button>
+            </form>
                 </fieldset>
                
             </div>
@@ -32,23 +57,38 @@
                 <div class="col-sm-12">
                         <label for="">Do you want to active Two Factor Authentication</label>
                         <div class="col-sm-12">
-                        <input type="radio"  name="auth" placeholder="" class="auth-check" />
-                        <label for="">Yes</label>
-                        <input type="radio" name="auth" placeholder="" class="auth-check" />
-                        <label for="">No</label>
+                       
+                     
+<div class="custom-control custom-radio">
+<input type="radio" class="custom-control-input auth-check" id="yes" name="defaultExampleRadios" (click)="authChange(true)">
+<label class="custom-control-label" for="yes">Yes</label>
+</div>
+
+<div class="custom-control custom-radio">
+<input type="radio" class="custom-control-input auth-check" id="no" name="defaultExampleRadios" (click)="authChange(false)" checked>
+<label class="custom-control-label" for="no">No</label>
+</div>
                         </div>
                         <hr/>
-                        <div class="col-sm-12">
-                        <input type="radio" name="auth" placeholder="" class="auth-check" />
-                        <label for="">Email</label>
-                        <input type="radio" name="auth" placeholder="" class="auth-check" />
-                        <label for="">Mobile</label>
-                        <input type="radio" name="auth" placeholder="" class="auth-check" />
-                        <label for="">Both</label>
+                        <div class="col-sm-12" *ngIf="authType">
+<form #authForm="ngForm"> 
+    {{authForm.valid}}                           
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" [(ngModel)]="authdata.mobile" name="mobile" placeholder="Enter Your mobile" #mobile="ngModel" id="mobile" (change)="authDataChange()">
+        <label class="custom-control-label" for="mobile">Mobile</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="email" [(ngModel)]="authdata.email"
+         name="email" placeholder="Enter Your email" #email="ngModel" (change)="authDataChange()">
+        <label class="custom-control-label" for="email">Email</label>
+        </div>
+    </form> 
+                        
                         </div>
                 </div>
         
-                <button type="button" class="btn btn-warning" (click)="verifySetting()" >Save</button>
+                <button type="button" [disabled]="!validForm" class="btn btn-warning" (click)="verifySetting()" >Save</button>
                 </fieldset>
         
         
@@ -56,11 +96,27 @@
             </div>
             <div stepTitle="Profile"  *ngIf="profile">
                     <fieldset>
-                    <h2 class="fs-title">Setting</h2>
-                    <h3 class="fs-subtitle">Two Factor Authentication</h3>
-                    <input type="text" name="fname" placeholder="Enter Your Name" />
-                    <input type="text" name="mobile" placeholder="Enter Your Mobile"/>
-                    <button type="button" class="btn btn-warning" (click)="verifyProfile()" >Save</button>
+                    <h2 class="fs-title">Profile</h2>
+                    <!-- <h3 class="fs-subtitle">Two Factor Authentication</h3> -->
+
+                    <form #profileForm="ngForm">
+                       
+                        <input type="text" [(ngModel)]="profiledata.name" name="name" placeholder="Enter Your Name" class="form-control" required #name="ngModel" pattern="[a-zA-Z ]*$" maxlength="50"/>
+                        <div *ngIf="name.invalid && name.touched" class="alert alert-danger">
+                            <div *ngIf="name.errors.required"> Name is required. </div>
+                            <div *ngIf="name.errors.pattern"> Only Alphbet accepted.</div>
+                        </div>
+
+                        <input type="text" [(ngModel)]="profiledata.mobile" name="mobile" placeholder="Enter Your Mobile" class="form-control" required #mobile="ngModel" pattern="^[0-9]{0,10}$"/>
+                        <div *ngIf="mobile.invalid && mobile.touched" class="alert alert-danger">
+                            <div *ngIf="mobile.errors.required"> Mobile is required. </div>
+                            <div *ngIf="name.errors.pattern"> Invalid Number accepted.</div>
+                        </div>
+
+                        <button  type="button" [disabled]= "profileForm.invalid"  class="btn btn-warning" (click)="verifyProfile()" >Save</button>
+                    </form>
+                   
+                    
                     </fieldset>
         
                     
@@ -74,6 +130,13 @@
                     
             </div>
 
+            <div stepTitle="login"  *ngIf="login">
+                    <div class="alert alert-warning">
+                            {{errorMsg }}</div>
+
+               <a href="/login">Click hare to login</a>
+               
+            </div>
 
             <div>
                    

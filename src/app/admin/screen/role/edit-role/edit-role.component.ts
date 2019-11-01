@@ -43,6 +43,7 @@ ngOnInit() {
   
   this._roleService.getmodule().subscribe(data=>
     {
+      console.log(data);
       this.module_name = data[0]._id;
       this.modules = data;
 

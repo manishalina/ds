@@ -18,6 +18,7 @@ import { EditRoleComponent } from './admin/screen/role/edit-role/edit-role.compo
 import { AddModuleComponent } from './admin/screen/module/add-module/add-module.component';
 import { EditModuleComponent } from './admin/screen/module/edit-module/edit-module.component';
 import { VerifyComponent } from './verify/verify.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 //import { PermissionComponent } from './admin/screen/permission/permission.component';
 
 
@@ -120,11 +121,11 @@ const routes: Routes = [
     //canActivate:[AuthGuard]
   },
   {
-    path:'verify',
+    path:'verify/:token',
     component:VerifyComponent,
     //canActivate:[AuthGuard]
   },
-
+  { path: '**', component: PageNotFoundComponent },
   { path: 'customer-list', loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule) },
   // // {
   // //   path:'permission',
