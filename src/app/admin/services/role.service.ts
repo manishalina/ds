@@ -14,13 +14,14 @@ import { ToastService } from 'src/app/_services/toast.service';
   providedIn: 'root'
 })
 export class RoleService {
+
   public apiPath = environment.apiPath;
-  public devPath = environment.devPath;
   constructor(private http:HttpClient,private _router:Router,private toastService: ToastService) { }
+
   private _url:string = this.apiPath+"/api/roles";
 
   getRole():Observable<any>{
-    this._url = this.devPath+"/api/roles";
+    this._url = this.apiPath+"/api/roles";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         //console.log('res ',data);
@@ -35,7 +36,7 @@ export class RoleService {
   }
 
   getRol():Observable<any>{
-    this._url = this.devPath+"/api/users";
+    this._url = this.apiPath+"/api/users";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         //console.log('res ',data);
@@ -50,7 +51,7 @@ export class RoleService {
   }
 
   getpermission():Observable<any>{
-    this._url = this.devPath+"/api/permissions";
+    this._url = this.apiPath+"/api/permissions";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         //console.log('res ',data);
@@ -64,7 +65,7 @@ export class RoleService {
     )).catch(this.errorHandar);          
   }
   getmodule():Observable<any>{
-    this._url = this.devPath+"/api/modules";
+    this._url = this.apiPath+"/api/modules";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         //console.log('res ',data);
@@ -79,7 +80,7 @@ export class RoleService {
   }
   
   getDepartment():Observable<any>{
-    this._url = this.devPath+"/api/users";
+    this._url = this.apiPath+"/api/users";
     return this.http.get<any>(this._url).pipe(
     retry(1),
     ).catch(this.errorHandar);          
@@ -108,7 +109,7 @@ export class RoleService {
     return localStorage.getItem('editRoleId')?localStorage.getItem('editRoleId'):'';
   }
   saveRole(roles){
-     this._url=this.devPath+"/api/roles/create";
+     this._url=this.apiPath+"/api/roles/create";
    
      return this.http.put<any>(this._url,roles)
              .pipe(map(data => {
@@ -146,7 +147,7 @@ export class RoleService {
 //    //return this.http.post<any>(this._url,login).catch(this.errorHandar);
 //  }
   deleteRole(roles){
-    this._url=this.devPath+"/api/role/delete";
+    this._url=this.apiPath+"/api/role/delete";
     let options= {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       body: roles,

@@ -18,6 +18,7 @@ import { ToastService } from 'src/app/_services/toast.service';
 export class UserService {
   public apiPath = environment.apiPath;
   constructor(private http:HttpClient,private toastService: ToastService) { }
+
   private _url:string = this.apiPath+"/api/users";
   //private apiPath:string = 'http://192.168.10.3:3200/';
 
@@ -70,6 +71,7 @@ export class UserService {
 
   saveUser(user){
     this._url=this.apiPath+"/api/user/sendEmail";
+
   
     return this.http.post<any>(this._url,user)
             .pipe(map(data => {

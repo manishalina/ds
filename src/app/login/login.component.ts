@@ -23,12 +23,7 @@ export class LoginComponent implements OnInit {
      // this.getScreenSize();
   }
 
-  // @HostListener('window:resize', ['$event'])
-  // getScreenSize(event?) {
-  //       this.screenHeight = window.innerHeight;
-  //       this.screenWidth = window.innerWidth;
-  //       console.log(this.screenHeight, this.screenWidth);
-  // }
+
 
   screenHeight: number;
   screenWidth: number;
@@ -46,11 +41,11 @@ export class LoginComponent implements OnInit {
   }
 
   loadScreen(){
-    console.log(this.auth);
-    console.log(this.auth.length);
+    //console.log(this.auth);
+    //console.log(this.auth.length);
     if(this.auth.length >0){
       this.disabledScreen();
-      console.log('get element',this.auth[0]);
+      //console.log('get element',this.auth[0]);
       if(this.auth[0] == 'email'){
         this.emailFlag = true;
       }
@@ -60,8 +55,7 @@ export class LoginComponent implements OnInit {
     }
   }
 onSubmit(){
-  //console.log('login',environment.token);
-  //console.log('login');
+
   //   let obj = {mobile:true,email:true};
     
   //   for (var key in obj) {
@@ -83,13 +77,13 @@ onSubmit(){
   // });
   this._authService.loginUser(this.userModel).subscribe(data=>
     {
-    //console.log(data.body);
-    //console.log(data.headers.get('auth-token'));
+
+   
       let mydata;
       mydata =this._authService.decrypt(data.body.data,'kingjuliean');
-      if(mydata.code==1){
+        if(mydata.code==1){
         if(mydata.isData==1){
-          // this.toastService.show(mydata.message, {
+          //   this.toastService.show(mydata.message, {
           //   classname: 'bg-success text-light',
           //   delay: 2000 ,
           //   autohide: true,
@@ -98,7 +92,31 @@ onSubmit(){
           environment.token= mydata.result.token.auth_token;
           environment.isLogin = true;
           environment.username=  mydata.result.profile.name;
-          this._router.navigateByUrl('/dashboard');
+       
+          //localStorage.setItem('islogin', mydata.result.token.auth_token);
+          if(!mydata.result.two_factor_authentication)
+          {
+           // console.log("================================dashboard");
+            this._router.navigateByUrl('/dashboard'); 
+          }
+          else{
+           // console.log("================================"+mydata.result.two_factor_authentication);
+            if(mydata.result.two_factor_authentication_type.email)
+            {
+              this.emailFlag=true;
+              this.loginFlag=false;
+            }
+            
+           
+          }
+         
+          //environment.token= mydata.result.token.auth_token;
+          //console.log('login token',environment.token);
+          // console.log(mydata.result.token.auth_token);
+           //console.log("================================"+mydata);
+          //environment.username=  mydata.result.profile.name;
+          //this._router.navigateByUrl('/dashboard');
+
           //window.location.href= '/dashboard';
         }
       }else{
@@ -109,6 +127,7 @@ onSubmit(){
           headertext: ' '
         });
         //console.log(mydata.message)
+
       }
     },
     error=>this.errorMsg=error
@@ -127,7 +146,7 @@ public data =[
 public errorMsg;
 public res;
   ngOnInit() {
-   // console.log('login',environment.token);
+
   }
 
 }

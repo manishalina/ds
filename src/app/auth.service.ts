@@ -16,6 +16,7 @@ import { ToastService } from './_services/toast.service';
 export class AuthService {
 
   public apiPath = environment.devPath;
+
   private _url:string = "";
   constructor(
     private http:HttpClient,
