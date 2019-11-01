@@ -89,14 +89,14 @@ onSubmit(){
           //   autohide: true,
           //   headertext: 'Error'
           // });
-          environment.token= mydata.result.token.auth_token;
-          environment.isLogin = true;
+         environment.token= mydata.result.token.auth_token;
+          
           environment.username=  mydata.result.profile.name;
-       
-          //localStorage.setItem('islogin', mydata.result.token.auth_token);
+           //localStorage.setItem('islogin', mydata.result.token.auth_token);
           if(!mydata.result.two_factor_authentication)
           {
-           // console.log("================================dashboard");
+           console.log("================================dashboard");
+           environment.isLogin = true;
             this._router.navigateByUrl('/dashboard'); 
           }
           else{
