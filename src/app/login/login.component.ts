@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   auth=[];
   
   disabledScreen(){
-    this.loginFlag= this.emailFlag=this.mobileFlag=false;
+    this.loginFlag= this.emailFlag=false;
   }
 
   loadScreen(){
@@ -48,37 +48,49 @@ export class LoginComponent implements OnInit {
       //console.log('get element',this.auth[0]);
       if(this.auth[0] == 'email'){
         this.emailFlag = true;
+
       }
       if(this.auth[0] == 'mobile'){
         this.mobileFlag = true;
       }
     }
   }
+  OTPLabel = "Email OTP";
+  otp = "1";
+  otpVerify(){
+    console.log('otp',this.otp);
+    
+    this._authService.twoFactorAuth({otp:this.otp}).subscribe(
+    data=>{
+      console.log('header',data.headers);
+      console.log('body',data.body);
+      environment.token = data.headers.get('auth-token');
+      let tempdata = data.body.data;
+      
+
+      if(tempdata.code==1){
+        if(tempdata.isData==1){
+            this.disabledScreen();
+            if(tempdata.result.nextScreen == 'email'){
+              this.emailFlag=true;
+              this.OTPLabel = "Email OTP";
+            }
+            if(tempdata.result.nextScreen == 'mobile'){
+              this.emailFlag=true;
+              this.OTPLabel = "Mobile OTP";
+              
+           }
+           this.otp = '';
+        }
+      }
+      environment.token = data.headers.get('auth-token');
+    }, error=>this.errorMsg=error)
+  }
 onSubmit(){
 
-  //   let obj = {mobile:true,email:true};
-    
-  //   for (var key in obj) {
-  //     console.log("======================>"+key+"=="+obj[key])
-  //       if(obj[key] == true){
-  //         this.auth.push(key);
-  //       }
-  //     // if(key == 'email'){
-  //     //   if(obj[key] == true){
-  //     //     this.auth.push('emailFlag');
-  //     //   }
-  //     // }
-    
-  // }
-  //this.loadScreen();
-  // this._authService.loginUser(this.userModel).subscribe(resp => {
-  //   console.log(resp.body);
-  //   console.log(resp.headers.get('auth-token'));
-  // });
+  
   this._authService.loginUser(this.userModel).subscribe(data=>
     {
-
-   
       let mydata;
       mydata =this._authService.decrypt(data.body.data,'kingjuliean');
         if(mydata.code==1){
@@ -89,11 +101,27 @@ onSubmit(){
           //   autohide: true,
           //   headertext: 'Error'
           // });
-         environment.token= mydata.result.token.auth_token;
-          
-          environment.username=  mydata.result.profile.name;
-          environment.isLogin = true;
-          this._router.navigateByUrl('/dashboard'); 
+         //environment.token= mydata.result.token.auth_token;
+          //environment.username=  mydata.result.profile.name;
+          console.log('token',data.headers.get('auth-token'));
+          environment.token = data.headers.get('auth-token');
+          console.log('mydata',mydata);
+
+          if(mydata.result.two_factor_authentication){
+            this.disabledScreen();
+            if(mydata.result.nextScreen == 'email'){
+              this.emailFlag=true;
+              this.OTPLabel = "Email OTP";
+            }
+            if(mydata.result.nextScreen == 'mobile'){
+              this.emailFlag=true;
+              this.OTPLabel = "Mobile OTP";
+            }
+          }
+
+
+          // environment.isLogin = true;
+          // this._router.navigateByUrl('/dashboard'); 
            //localStorage.setItem('islogin', mydata.result.token.auth_token);
           // if(!mydata.result.two_factor_authentication)
           // {
@@ -135,6 +163,9 @@ onSubmit(){
     error=>this.errorMsg=error
    );
 }
+
+
+
 public data =[
   { name: "John", age: 31, city: "New York" },
   { name: "John", age: 31, city: "New York" },

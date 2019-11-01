@@ -57,46 +57,32 @@
                     <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Login</button>
                   </div>
                 </div>
-                <div class="form-group"  *ngIf="emailFlag">
-                    <label for="exampleInputPassword">Email OTP</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend bg-transparent">
-                        <span class="input-group-text bg-transparent border-right-0">
-                          <i class="mdi mdi-lock-outline text-primary"></i>
-                        </span>
-                      </div>
-                      <input type="text" placeholder="Password" class="form-control form-control-lg border-left-0" name="password" required="" [(ngModel)]="userModel.password" #password="ngModel">
-                    </div>
-                    <div class="my-3">
-                        <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="file:///C:/Users/Administrator/Desktop/template/index.html">LOGIN</a> -->
-                        <button class=" btn-primary btn-sm font-weight-medium auth-form-btn m-2">Verify</button>
-                        <button class=" btn-danger btn-sm font-weight-medium auth-form-btn m-2">Resend</button>
-                        
-                      </div>
-                  </div>
+                
 
-                  <div class="form-group" *ngIf="mobileFlag">
-                      <label for="exampleInputPassword">Mobile OTP</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend bg-transparent">
-                          <span class="input-group-text bg-transparent border-right-0">
-                            <i class="mdi mdi-lock-outline text-primary"></i>
-                          </span>
-                        </div>
-                        <input type="text" placeholder="Password" class="form-control form-control-lg border-left-0" name="password" required="" [(ngModel)]="userModel.password" #password="ngModel">
-                      </div>
-                      <div class="my-3">
-                          <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="file:///C:/Users/Administrator/Desktop/template/index.html">LOGIN</a> -->
-                          <button class=" btn-primary btn-sm font-weight-medium auth-form-btn m-2">Verify</button>
-                          <button class=" btn-danger btn-sm font-weight-medium auth-form-btn m-2">Resend</button>
-                         
-                        </div>
-                    </div>
+                
                
                 <!-- <div class="text-center mt-4 font-weight-light">
                   Don't have an account? <a href="file:///C:/Users/Administrator/Desktop/template/pages/samples/register-2.html" class="text-primary">Create</a>
                 </div> -->
               </form>
+
+              <div class="form-group"  *ngIf="emailFlag">
+                  <label for="exampleInputPassword">{{OTPLabel}}</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend bg-transparent">
+                      <span class="input-group-text bg-transparent border-right-0">
+                        <i class="mdi mdi-lock-outline text-primary"></i>
+                      </span>
+                    </div>
+                    <input type="text" placeholder="Password" class="form-control form-control-lg border-left-0" name="password" required="" [(ngModel)]="otp" >
+                  </div>
+                  <div class="my-3">
+                      <!-- <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="file:///C:/Users/Administrator/Desktop/template/index.html">LOGIN</a> -->
+                      <button class=" btn-primary btn-sm font-weight-medium auth-form-btn m-2" (click)="otpVerify()">Verify</button>
+                      <button class=" btn-danger btn-sm font-weight-medium auth-form-btn m-2">Resend</button>
+                      
+                    </div>
+                </div>
 
              
             </div>

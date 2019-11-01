@@ -33,6 +33,13 @@ export class AuthService {
     this.mydata1={data:this.mydata}
     return this.http.post<any>(this._url,this.mydata1, {observe: 'response'});
   }
+  twoFactorAuth(obj):any {
+   // let mdata:any=login;
+    this._url=this.apiPath+"/api/user/twoFactorAuth";
+    //this.mydata =this.encrypt(login,environment.encToken);
+    //this.mydata1={data:this.mydata}
+    return this.http.post<any>(this._url,obj, {observe: 'response'});
+  }
 
   errorHandar(error:HttpErrorResponse){
     alert(error.statusText);
