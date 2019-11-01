@@ -21,8 +21,8 @@ export class VerifyService {
   //sendOtp(obj):Observable<any>{
   sendOtp(obj):any{
     console.log(obj);
-    //this._url = this.apiPath+"/api/roles";
-    this._url = "http://192.168.10.3:3200/api/otp/sendOtp";
+    this._url = this.apiPath+"/api/otp/sendOtp";
+    //this._url = "http://192.168.10.3:3200/api/otp/sendOtp";
     let options= {
       headers: new HttpHeaders({ 'Content-Type': 'application/json','user-token': obj })
      
@@ -62,8 +62,8 @@ export class VerifyService {
 
   createUser(obj):any{
     console.log(obj);
-    //this._url = this.apiPath+"/api/roles";
-    this._url = "http://192.168.10.3:3200/api/user/create";
+    this._url = this.apiPath+"/api/user/create";
+    //this._url = "http://192.168.10.3:3200/api/user/create";
     return this.http.put<any>(this._url,obj).pipe(
       map(data => {
         return data;
@@ -73,8 +73,8 @@ export class VerifyService {
   }
   updateUser(obj):any{
     console.log(obj);
-    //this._url = this.apiPath+"/api/roles";
-    this._url = "http://192.168.10.3:3200/api/user/profileCreate";
+    this._url = this.apiPath+"/api/user/profileCreate";
+    //this._url = "http://192.168.10.3:3200/api/user/profileCreate";
     return this.http.put<any>(this._url,obj).pipe(
       map(data => {
         return data;
@@ -84,8 +84,8 @@ export class VerifyService {
   }
   twoWayVerification(obj):any{
     console.log(obj);
-    //this._url = this.apiPath+"/api/roles";
-    this._url = "http://192.168.10.3:3200/api/user/twoWayVerification";
+    this._url = this.apiPath+"/api/user/twoWayVerification";
+    //this._url = "http://192.168.10.3:3200/api/user/twoWayVerification";
     return this.http.put<any>(this._url,obj).pipe(
       map(data => {
         return data;
