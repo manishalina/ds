@@ -16,6 +16,7 @@ import { ToastService } from './_services/toast.service';
 export class AuthService {
 
   public apiPath = environment.apiPath;
+  public devPath = environment.devPath;
   private _url:string = "";
   constructor(
     private http:HttpClient,
@@ -28,7 +29,7 @@ export class AuthService {
   loginUser(login:Login):any {
     //console.log(login);
     let mdata:any=login;
-    this._url=this.apiPath+"/api/login";
+    this._url=this.devPath+"/api/login";
 
     //this._url="http://192.168.10.3:3200/api/login";
     this.mydata =this.encrypt(login,'kingjuliean');

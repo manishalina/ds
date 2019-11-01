@@ -14,6 +14,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ModuleService {
   public apiPath = environment.apiPath;
+  public devPath = environment.devPath;
   public _url;
   constructor(
     private http:HttpClient,
@@ -21,7 +22,7 @@ export class ModuleService {
     ){}
 
   getmodule():Observable<any>{
-    this._url = this.apiPath+"/api/modules";
+    this._url = this.devPath+"/api/modules";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         console.log('res ',data);
@@ -35,7 +36,7 @@ export class ModuleService {
     )).catch(this.errorHandar);          
   }
   saveModule(module){
-    this._url=this.apiPath+"/api/modules/create";
+    this._url=this.devPath+"/api/modules/create";
   
     return this.http.put<any>(this._url,module)
             .pipe(map(data => {
@@ -58,7 +59,7 @@ export class ModuleService {
   return localStorage.getItem('editModuleId')?localStorage.getItem('editModuleId'):'';
 }
 deleteModule(module){
-  this._url=this.apiPath+"/api/modules/delete";
+  this._url=this.devPath+"/api/modules/delete";
   let options= {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     body: module,

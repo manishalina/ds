@@ -16,12 +16,13 @@ import { environment } from '../../../environments/environment';
 })
 export class UserService {
   public apiPath = environment.apiPath;
+  public devPath = environment.devPath;
   constructor(private http:HttpClient) { }
-  private _url:string = this.apiPath+"/api/users";
+  private _url:string = this.devPath+"/api/users";
   //private apiPath:string = 'http://192.168.10.3:3200/';
 
   getUser():Observable<any>{
-    this._url = this.apiPath+"/api/users";
+    this._url = this.devPath+"/api/users";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         //console.log('res ',data);
@@ -40,7 +41,7 @@ export class UserService {
   }
 
   getRol():Observable<any>{
-    this._url = this.apiPath+"/api/roles";
+    this._url = this.devPath+"/api/roles";
     return this.http.get<any>(this._url).pipe(
       map(data => {
         console.log('roles ',data);
@@ -55,7 +56,7 @@ export class UserService {
   }
   
   getDepartment():Observable<any>{
-    this._url = this.apiPath+"/api/departments";
+    this._url = this.devPath+"/api/departments";
     return this.http.get<any>(this._url).pipe(
       map(data => {
        console.log('department ',data);
@@ -75,7 +76,7 @@ export class UserService {
   // }
 
   saveUser(user){
-    this._url=this.apiPath+"/api/user/sendEmail";
+    this._url=this.devPath+"/api/user/sendEmail";
     //this._url="http://192.168.10.3:3200/api/user/sendEmail";
   
     return this.http.post<any>(this._url,user)
