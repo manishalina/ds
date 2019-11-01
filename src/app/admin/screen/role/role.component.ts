@@ -68,7 +68,7 @@ export class RoleComponent implements OnInit {
   showPopup=false;
 
     ngOnInit() {
-      console.log('role',environment.token)
+      
        this.loadRole();
 
         
@@ -81,19 +81,28 @@ export class RoleComponent implements OnInit {
   }
    
     editRole(id): void {
-      localStorage.removeItem("editRoleId");
+      this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to edit ?')
+      .then((confirmed) => {
+        
+        if(confirmed){
+          localStorage.removeItem("editRoleId");
       localStorage.setItem("editRoleId", id.toString());
       this._router.navigate(['edit-role']);
+        }
+
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+      
+     
     };
   
 
     deleteRole(id): void {
       let obj = {'role_id':id};
-      this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
+      this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to delete ?')
       .then((confirmed) => {
-        console.log('User confirmed:', confirmed);
+        
         if(confirmed){
-          console.log('User confirmed delete api call ', confirmed);
           this._roleService.deleteRole(obj).subscribe(data=>
             {
               if(data){

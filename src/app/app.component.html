@@ -7,10 +7,7 @@
 </ng-template>
  
 <button class="btn btn-info" (click)="showCustomToast(customTpl)" ngbTooltip="Will disappear in 15s">Custom toast</button>&nbsp; -->
-<button (click)="openConfirmationDialog()" type="button" class="btn btn-primary">Open dialog</button>
 
-<p>Open the console to see log statements.</p>
-<app-toasts></app-toasts> 
 
 
 <div class="lessons-list" *ngIf="_authService.loggedIn() else loading">
