@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthService} from './auth.service';
 import { ToastService } from './_services/toast.service';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,17 @@ export class AppComponent {
   isLogin = true;
   constructor(
     private _authService:AuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private confirmationDialogService: ConfirmationDialogService
     ){
   }
+  
+  public openConfirmationDialog() {
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
+    .then((confirmed) => console.log('User confirmed:', confirmed))
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  }
+
   showStandard() {
     this.toastService.show('I am a standard toast', {
       delay: 2000,

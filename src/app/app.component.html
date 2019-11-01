@@ -7,7 +7,9 @@
 </ng-template>
  
 <button class="btn btn-info" (click)="showCustomToast(customTpl)" ngbTooltip="Will disappear in 15s">Custom toast</button>&nbsp; -->
+<button (click)="openConfirmationDialog()" type="button" class="btn btn-primary">Open dialog</button>
 
+<p>Open the console to see log statements.</p>
 <app-toasts></app-toasts> 
 
 
@@ -18,11 +20,11 @@
         <!-- top header         -->
             <div class="app-main">
                      <!-- side menu code start         -->
-                        <app-sidemenu></app-sidemenu>
+                      <app-sidemenu></app-sidemenu>
                     <!-- side menu code end         -->
                     <div class="app-main__outer">
-                        <router-outlet></router-outlet>
-                        <app-footer></app-footer>  
+                      <router-outlet></router-outlet>
+                      <app-footer></app-footer>  
                     </div>
                     
             </div>

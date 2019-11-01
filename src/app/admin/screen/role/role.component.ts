@@ -4,6 +4,8 @@ import { Role } from '../../classes/role';
 import { RoleService } from '../../services/role.service';
 import { Router } from '@angular/router';
 import { HttpParams, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmation-dialog.service';
 @Component({
   selector: 'app-role',
   templateUrl: './role.component.html',
@@ -32,7 +34,7 @@ export class RoleComponent implements OnInit {
   //   }
   constructor(private _roleService : RoleService,
     private _router:Router,
-    private http:HttpClient) { }
+    private http:HttpClient,private confirmationDialogService: ConfirmationDialogService) { }
 
   errorMsg = '';
   pageTitle = 'Role List';
@@ -66,7 +68,7 @@ export class RoleComponent implements OnInit {
   showPopup=false;
 
     ngOnInit() {
-
+      console.log('role',environment.token)
        this.loadRole();
 
         
@@ -87,14 +89,24 @@ export class RoleComponent implements OnInit {
 
     deleteRole(id): void {
       let obj = {'role_id':id};
-      this._roleService.deleteRole(obj).subscribe(data=>
-       {
-         if(data){
-          this.loadRole();
-         }
-       },
-        error=>this.errorMsg=error
-        );
+      this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
+      .then((confirmed) => {
+        console.log('User confirmed:', confirmed);
+        if(confirmed){
+          console.log('User confirmed delete api call ', confirmed);
+          this._roleService.deleteRole(obj).subscribe(data=>
+            {
+              if(data){
+               this.loadRole();
+              }
+            },
+             error=>this.errorMsg=error
+           );
+        }
+
+      })
+      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+      
     
       
     }

@@ -29,29 +29,9 @@ export class AuthService {
   loginUser(login:Login):any {
     let mdata:any=login;
     this._url=this.apiPath+"/api/login";
-
-    //this._url="http://192.168.10.3:3200/api/login";
-    this.mydata =this.encrypt(login,'kingjuliean');
+    this.mydata =this.encrypt(login,environment.encToken);
     this.mydata1={data:this.mydata}
     return this.http.post<any>(this._url,this.mydata1, {observe: 'response'});
-
-    // this.http.post(this._url,this.mydata1,
-    //   {'headers' : new HttpHeaders ({})
-    //   , observe:'response',
-    // })
-    //   .subscribe((response:HttpResponse<any>) => {
-    //     console.log(response);
-    //     const keys = response.headers.keys();
-    //     // let headers = keys.map(key => {
-    //     //   // `${key}: ${response.headers.get(key)}`
-    //     //   //   main_headers[key] = response.headers.get(key)
-    //     //     console.log(key,response.headers.get(key));
-    //     //    }
-           
-    //       //);
-    //   });
-            
-  	//return this.http.post<any>(this._url,login).catch(this.errorHandar);
   }
 
   errorHandar(error:HttpErrorResponse){

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModuleService } from '../../services/module.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-module',
@@ -16,11 +17,18 @@ public errorMsg:any;
   pageTitle='Module List'
   ngOnInit() {
    this.loadModule();
+   console.log('module',environment.token)
   }
 
   loadModule(){
     this._moduleService.getmodule().subscribe(data=>
-      this.modules = data,
+      {
+         if(data.code == 1){
+          if(data.isData==1){
+            this.modules = data.result;
+          }
+        }
+      },
       error=>this.errorMsg=error
       );
   }

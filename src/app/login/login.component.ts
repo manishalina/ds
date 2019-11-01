@@ -92,23 +92,25 @@ onSubmit(){
          environment.token= mydata.result.token.auth_token;
           
           environment.username=  mydata.result.profile.name;
+          environment.isLogin = true;
+          this._router.navigateByUrl('/dashboard'); 
            //localStorage.setItem('islogin', mydata.result.token.auth_token);
-          if(!mydata.result.two_factor_authentication)
-          {
-           console.log("================================dashboard");
-           environment.isLogin = true;
-            this._router.navigateByUrl('/dashboard'); 
-          }
-          else{
-           // console.log("================================"+mydata.result.two_factor_authentication);
-            if(mydata.result.two_factor_authentication_type.email)
-            {
-              this.emailFlag=true;
-              this.loginFlag=false;
-            }
+          // if(!mydata.result.two_factor_authentication)
+          // {
+          //  console.log("================================dashboard");
+          //  environment.isLogin = true;
+          //   this._router.navigateByUrl('/dashboard'); 
+          // }
+          // else{
+          //  // console.log("================================"+mydata.result.two_factor_authentication);
+          //   if(mydata.result.two_factor_authentication_type.email)
+          //   {
+          //     this.emailFlag=true;
+          //     this.loginFlag=false;
+          //   }
             
            
-          }
+          // }
          
           //environment.token= mydata.result.token.auth_token;
           //console.log('login token',environment.token);

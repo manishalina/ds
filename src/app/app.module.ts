@@ -45,6 +45,8 @@ import { VerifyComponent } from './verify/verify.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastComponent } from './toast/toast.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
 //import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ import { ToastComponent } from './toast/toast.component';
     SettingComponent,
     VerifyComponent,
     PageNotFoundComponent,
-    ToastComponent
+    ToastComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,8 @@ import { ToastComponent } from './toast/toast.component';
     NgbModule,
 	  ToastrModule.forRoot()
   ],
-  providers: [AuthService,AuthGuard,{
+  entryComponents: [ ConfirmationDialogComponent ],
+  providers: [AuthService,AuthGuard,ConfirmationDialogService,{
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true

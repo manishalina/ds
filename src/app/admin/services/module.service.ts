@@ -22,27 +22,20 @@ export class ModuleService {
 
   getmodule():Observable<any>{
     this._url = this.apiPath+"/api/modules";
-    return this.http.get<any>(this._url).pipe(
+    return this.http.get<any>(this._url,{observe: 'response'}).pipe(
       map(data => {
-        console.log('res ',data);
-        if(data.code == 1){
-          if(data.isData==1){
-            return data.result;
-          }
-        }
-        return false;
+        //environment.token = data.headers.get('auth-token');
+        return data.body;
      }
     )).catch(this.errorHandar);          
   }
   saveModule(module){
     this._url=this.apiPath+"/api/modules/create";
-  
-    return this.http.put<any>(this._url,module)
+    return this.http.put<any>(this._url,module,{observe: 'response'})
             .pipe(map(data => {
-              //console.log(data);
-             
-              
-             return data;
+              console.log('save',data);
+              environment.token = data.headers.get('auth-token');
+              return data.body;
            })).catch(this.errorHandar);
    //return this.http.post<any>(this._url,login).catch(this.errorHandar);
  }
@@ -57,6 +50,7 @@ deleteModule(module){
     body: module,
   };
   return this.http.delete<any>(this._url,options).pipe(map(data => {
+    console.log('ressss',data)
     if(data.code == 1){
       return true;
     }else{
