@@ -71,19 +71,19 @@ export class AuthService {
   }
 
   loggedIn(){
-    return !!localStorage.getItem('token');
+    return environment.token?true:false;
   }
 
   loggedOut(){
-    localStorage.removeItem('islogin');
-    localStorage.removeItem('username');
+    environment.token = '';
+    environment.username='';
     this._router.navigate(['/login']);
   }
   getUsername(){
-    return localStorage.getItem('username')?localStorage.getItem('username'):'';
+    return environment.username?environment.username:'';
   }
   getToken(){
-    return localStorage.getItem('token')?localStorage.getItem('token'):'';
+    return environment.token;
   }
   public mydata;
   public mydata1;

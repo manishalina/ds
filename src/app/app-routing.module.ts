@@ -37,73 +37,73 @@ const routes: Routes = [
   {
     path:'user',
     component:UserComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
 
   },
   {
     path:'designation',
     component:DesignationComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
 
   }
   ,
   {
     path:'permission',
     component:PermissionComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
 
   },
   {
     path:'module',
     component:ModuleComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
 
   },
   {
     path:'module/add',
     component:AddModuleComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
 
   },
   {
     path:'module-edit',
     component:EditModuleComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
 
   },
   {
     path:'test',
     component:TestComponent,
-    //canActivate:[AuthGuard]
+    ////canActivate:[AuthGuard]
 
   },
   {
     path:'test1',
     component:Test1Component,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
 
   },
    {
     path:'test2',
     component:Test2Component,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
 
   },
 
   {
     path:'role',
     component:RoleComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
   },
   {
     path:'edit-role',
     component:EditRoleComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
   },
   {
     path:'department',
     component:DepartmentComponent,
-    canActivate:[AuthGuard]
+    //canActivate:[AuthGuard]
   },
   {
     path:'dashboard',

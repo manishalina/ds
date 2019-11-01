@@ -5,6 +5,7 @@ import { HostListener } from "@angular/core";
 //import  {jsonwebtoken} from "jsonwebtoken"
 import { ToastService } from '../_services/toast.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -59,6 +60,7 @@ export class LoginComponent implements OnInit {
     }
   }
 onSubmit(){
+  console.log('login',environment.token);
   console.log('login');
   //   let obj = {mobile:true,email:true};
     
@@ -96,10 +98,12 @@ onSubmit(){
             autohide: true,
             headertext: 'Error'
           });
-          localStorage.setItem('islogin', mydata.result.token.auth_token);
-          console.log(mydata.result.token.auth_token);
-          console.log(mydata.result.profile);
-          localStorage.setItem('username', mydata.result.profile.name);
+          //localStorage.setItem('islogin', mydata.result.token.auth_token);
+          environment.token= mydata.result.token.auth_token;
+          //console.log('login token',environment.token);
+          // console.log(mydata.result.token.auth_token);
+          // console.log(mydata.result.profile);
+          environment.username=  mydata.result.profile.name;
           this._router.navigateByUrl('/dashboard');
           //window.location.href= '/dashboard';
         }
@@ -130,7 +134,7 @@ public data =[
 public errorMsg;
 public res;
   ngOnInit() {
-   
+    console.log('login',environment.token);
   }
 
 }

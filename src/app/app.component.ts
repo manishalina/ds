@@ -9,6 +9,7 @@ import { ToastService } from './_services/toast.service';
 })
 export class AppComponent {
   title = 'biadmin';
+  application_token = 'biadmin';
   isLogin = true;
   constructor(
     private _authService:AuthService,
