@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  devPath:'http://192.168.10.3:3200',
   apiPath:'http://192.168.10.10:3200',
   encToken:'kingjuliean',
   token:'',

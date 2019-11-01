@@ -29,6 +29,8 @@ export class AuthService {
     //console.log(login);
     let mdata:any=login;
     this._url=this.apiPath+"/api/login";
+
+    //this._url="http://192.168.10.3:3200/api/login";
     this.mydata =this.encrypt(login,'kingjuliean');
     this.mydata1={data:this.mydata}
     //console.log(this.mydata1);

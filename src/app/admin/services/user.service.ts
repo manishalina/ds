@@ -75,8 +75,8 @@ export class UserService {
   // }
 
   saveUser(user){
-    //this._url=this.apiPath+"/api/user/sendEmail";
-    this._url="http://192.168.10.3:3200/api/user/sendEmail";
+    this._url=this.apiPath+"/api/user/sendEmail";
+    //this._url="http://192.168.10.3:3200/api/user/sendEmail";
   
     return this.http.post<any>(this._url,user)
             .pipe(map(data => {
