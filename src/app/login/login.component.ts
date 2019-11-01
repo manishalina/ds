@@ -20,15 +20,15 @@ export class LoginComponent implements OnInit {
     private toastService: ToastService,
     private _router : Router
     ) {
-      this.getScreenSize();
+     // this.getScreenSize();
   }
 
-  @HostListener('window:resize', ['$event'])
-  getScreenSize(event?) {
-        this.screenHeight = window.innerHeight;
-        this.screenWidth = window.innerWidth;
-        console.log(this.screenHeight, this.screenWidth);
-  }
+  // @HostListener('window:resize', ['$event'])
+  // getScreenSize(event?) {
+  //       this.screenHeight = window.innerHeight;
+  //       this.screenWidth = window.innerWidth;
+  //       console.log(this.screenHeight, this.screenWidth);
+  // }
 
   screenHeight: number;
   screenWidth: number;
@@ -60,8 +60,8 @@ export class LoginComponent implements OnInit {
     }
   }
 onSubmit(){
-  console.log('login',environment.token);
-  console.log('login');
+  //console.log('login',environment.token);
+  //console.log('login');
   //   let obj = {mobile:true,email:true};
     
   //   for (var key in obj) {
@@ -83,26 +83,20 @@ onSubmit(){
   // });
   this._authService.loginUser(this.userModel).subscribe(data=>
     {
-    console.log(data.body);
-    console.log(data.headers.get('auth-token'));
+    //console.log(data.body);
+    //console.log(data.headers.get('auth-token'));
       let mydata;
-      console.log(data.body)
       mydata =this._authService.decrypt(data.body.data,'kingjuliean');
-      console.log(mydata);
       if(mydata.code==1){
         if(mydata.isData==1){
-          console.log(mydata.message)
-          this.toastService.show(mydata.message, {
-            classname: 'bg-success text-light',
-            delay: 2000 ,
-            autohide: true,
-            headertext: 'Error'
-          });
-          //localStorage.setItem('islogin', mydata.result.token.auth_token);
+          // this.toastService.show(mydata.message, {
+          //   classname: 'bg-success text-light',
+          //   delay: 2000 ,
+          //   autohide: true,
+          //   headertext: 'Error'
+          // });
           environment.token= mydata.result.token.auth_token;
-          //console.log('login token',environment.token);
-          // console.log(mydata.result.token.auth_token);
-          // console.log(mydata.result.profile);
+          environment.isLogin = true;
           environment.username=  mydata.result.profile.name;
           this._router.navigateByUrl('/dashboard');
           //window.location.href= '/dashboard';
@@ -114,8 +108,7 @@ onSubmit(){
           autohide: true,
           headertext: ' '
         });
-        console.log(mydata.message)
-        //localStorage.removeItem('islogin');
+        //console.log(mydata.message)
       }
     },
     error=>this.errorMsg=error
@@ -134,7 +127,7 @@ public data =[
 public errorMsg;
 public res;
   ngOnInit() {
-    console.log('login',environment.token);
+   // console.log('login',environment.token);
   }
 
 }

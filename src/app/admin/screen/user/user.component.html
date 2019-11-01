@@ -30,28 +30,32 @@
               <div class="modal-body">
                 <form class="form-horizontal" #userForm="ngForm" (ngSubmit)="onSubmit()">
                   <hr/>
-                  {{userForm.value | json }}
+                  <!-- {{userForm.value | json }} -->
                   <div class="row form-group">
                     <div class="col-sm-6 form-group">
                       <label>Department</label>
+                      
                       <select name="department" class="form-control" id="" [(ngModel)]="userModel.department_id" #department="ngModel">
+                          <option value="" disabled selected>Select Depertment</option>
                           <option [ngValue]="department._id" *ngFor="let department of departments">{{department.name}}</option>
                       </select>
                       <!-- <span class="text text-danger" *ngIf="department.invalid" >Invalid value</span> -->
                     </div>
                     <div class="col-sm-6 form-group">
                       <label>Role</label>
+                     
                       <select name="role" class="form-control" id="" [(ngModel)]="userModel.role_id" #role="ngModel">
+                          <option value="" disabled selected>Select Role</option>
                           <option [ngValue]="role._id" *ngFor="let role of roles">{{role.name}}</option>
                       </select>
-                      <span class="text text-danger" *ngIf="role.invalid">Invalid value</span>
+                      <!-- <span class="text text-danger" *ngIf="role.invalid">Invalid value</span> -->
                     </div>
                     </div>
                   <div class="row form-group">
                   <div class="col-sm-6 form-group">
                     <label>Email</label>
                     <input type="email" class="form-control" name="email" required="" [(ngModel)]="userModel.email" #email="ngModel">
-                    <span class="text text-danger" *ngIf="email.invalid">Invalid value</span>
+                    <!-- <span class="text text-danger" *ngIf="email.invalid">Invalid value</span> -->
                   </div>
         
                 

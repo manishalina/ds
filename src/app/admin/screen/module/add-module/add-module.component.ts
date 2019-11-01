@@ -27,13 +27,17 @@ public errorMsg:any;
     "parent_id":this.parent_id
   }
 
-    console.log('save',module);
+    //console.log('save',module);
     this._moduleService.saveModule(module).subscribe(data=>
-      console.log(data),
+      {
+        if(data.code == 1){
+          this._router.navigateByUrl('/module');
+        }
+      },
       error=>this.errorMsg=error
     );
 
-    this._router.navigateByUrl('/module');
+   
   }
 
   ngOnInit() {

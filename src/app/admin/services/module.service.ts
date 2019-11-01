@@ -40,17 +40,10 @@ export class ModuleService {
   
     return this.http.put<any>(this._url,module)
             .pipe(map(data => {
-              console.log(data);
-              if(data.code == 1){
-               //localStorage.removeItem('editRoleId');
-               if(data.isData==1){
-                 //return data.result;
-                 //return data.result;
-               }
-             }
-              //
-             // this._router.navigate(['/module']);
-             return true;
+              //console.log(data);
+             
+              
+             return data;
            })).catch(this.errorHandar);
    //return this.http.post<any>(this._url,login).catch(this.errorHandar);
  }
@@ -73,7 +66,7 @@ deleteModule(module){
  })).catch(this.errorHandar);
 }
   errorHandar(error){
-    console.log('erro',error.message);
+    //console.log('erro',error.message);
     if(error.status !== 200){
       alert(error.message);
     }

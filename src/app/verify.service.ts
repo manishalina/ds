@@ -24,7 +24,7 @@ export class VerifyService {
     this._url = this.apiPath+"/api/otp/sendOtp";
     //this._url = "http://192.168.10.3:3200/api/otp/sendOtp";
     let options= {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json','user-token': obj })
+      headers: new HttpHeaders({ 'Content-Type': 'application/json','auth-token': obj })
      
     };
     return this.http.post<any>(this._url,{},options).pipe(

@@ -8,6 +8,7 @@ import { map } from 'rxjs/internal/operators/map';
 import { retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { ToastService } from 'src/app/_services/toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,14 +16,14 @@ import { environment } from '../../../environments/environment';
 export class RoleService {
   public apiPath = environment.apiPath;
   public devPath = environment.devPath;
-  constructor(private http:HttpClient,private _router:Router) { }
+  constructor(private http:HttpClient,private _router:Router,private toastService: ToastService) { }
   private _url:string = this.apiPath+"/api/roles";
 
   getRole():Observable<any>{
     this._url = this.devPath+"/api/roles";
     return this.http.get<any>(this._url).pipe(
       map(data => {
-        console.log('res ',data);
+        //console.log('res ',data);
         if(data.code == 1){
           if(data.isData==1){
             return data.result;
@@ -37,7 +38,7 @@ export class RoleService {
     this._url = this.devPath+"/api/users";
     return this.http.get<any>(this._url).pipe(
       map(data => {
-        console.log('res ',data);
+        //console.log('res ',data);
         if(data.code == 1){
           if(data.isData==1){
             return data.result;
@@ -66,7 +67,7 @@ export class RoleService {
     this._url = this.devPath+"/api/modules";
     return this.http.get<any>(this._url).pipe(
       map(data => {
-        console.log('res ',data);
+        //console.log('res ',data);
         if(data.code == 1){
           if(data.isData==1){
             return data.result;
@@ -90,9 +91,14 @@ export class RoleService {
   // }
 
   errorHandar(error){
-    console.log('erro',error.message);
+    //console.log('erro',error.message);
     if(error.status !== 200){
-      alert(error.message);
+      this.toastService.show('Server Error', {
+        classname: 'bg-success text-light',
+        delay: 10000 ,
+        autohide: true,
+        headertext: 'Success'
+      });
     }
   	return Observable.throw(error.message || "Server Error");
 
@@ -106,7 +112,7 @@ export class RoleService {
    
      return this.http.put<any>(this._url,roles)
              .pipe(map(data => {
-               console.log(data);
+               //console.log(data);
                if(data.code == 1){
                 localStorage.removeItem('editRoleId');
                 if(data.isData==1){

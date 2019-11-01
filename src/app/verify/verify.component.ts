@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { VerifyService} from '../verify.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
+import { environment} from '../../environments/environment';
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.component.html',
@@ -15,7 +15,8 @@ export class VerifyComponent implements OnInit {
     private _router:Router,
     private http:HttpClient,private route: ActivatedRoute) {
       this.token = this.route.snapshot.paramMap.get('token');
-      console.log(this.token);
+      environment.token = (this.token);
+      environment.isLogin = false;
      }
 token:any;
 otp = true;
@@ -31,10 +32,12 @@ otpValue ="123";
 errorMsg = '';
 authType = false;
   ngOnInit() {
-   
-let decodeData;
-    localStorage.setItem('token',this.token);
-    // decodeData = atob(this.token);
+   console.log('load')
+    let decodeData;
+    
+    //localStorage.setItem('token',this.token);
+    //decodeData = atob(this.token);
+
     // console.log(decodeData);
     // var obj = JSON.parse(decodeData);
     // console.log(obj.email);
