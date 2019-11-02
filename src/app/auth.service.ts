@@ -41,6 +41,11 @@ export class AuthService {
     return this.http.post<any>(this._url,obj, {observe: 'response'});
   }
 
+  otpSend(obj):any {
+     this._url=this.apiPath+"/api/user/resendOtp";
+     return this.http.post<any>(this._url,obj, {observe: 'response'});
+   }
+ 
   errorHandar(error:HttpErrorResponse){
     alert(error.statusText);
     //alert(error.status);

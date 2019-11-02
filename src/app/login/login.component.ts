@@ -113,11 +113,48 @@ export class LoginComponent implements OnInit {
            this.otp = '';
         }
       }else{
-        alert('error');
+          this.toastService.show(tempdata.message, {
+            classname: 'bg-danger text-light',
+            delay: 2000 ,
+            autohide: true,
+            headertext: 'Opss Error!!!'
+          });
       }
       environment.token = data.headers.get('auth-token');
     }, error=>this.errorMsg=error)
   }
+
+  otpResend(){
+    console.log('otp',this.otp);
+    
+    this._authService.otpSend({otp:this.otp}).subscribe(
+    data=>{
+      console.log('header',data.headers);
+      console.log('body',data.body);
+      environment.token = data.headers.get('auth-token');
+      let tempdata1 = data.body.data;
+      let tempdata :any
+      tempdata = this._authService.decrypt(tempdata1,environment.encToken);
+      console.log('tempdata',tempdata);
+      if(tempdata.code==1){
+        console.log('sadasadsas',tempdata.message)
+           this.toastService.show(tempdata.message, {
+            classname: 'bg-success text-light',
+            delay: 10000,
+            autohide: true,
+            headertext: 'Error'
+          });
+        if(tempdata.isData==1){
+            
+            this.otp = '';
+        }
+      }else{
+        alert('error');
+      }
+      
+    }, error=>this.errorMsg=error)
+  }
+
 onSubmit(){
 
   
@@ -199,7 +236,7 @@ onSubmit(){
           classname: 'bg-danger text-light',
           delay: 200000 ,
           autohide: true,
-          headertext: ' '
+          headertext: 'Opss!!  '
         });
         //console.log(mydata.message)
 
