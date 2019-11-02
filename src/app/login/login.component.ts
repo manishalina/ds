@@ -57,6 +57,33 @@ export class LoginComponent implements OnInit {
   }
   OTPLabel = "Email OTP";
   otp = "1";
+
+  final(){
+    console.log('otp',this.otp);
+    
+    this._authService.twoFactorAuth({}).subscribe(
+    data=>{
+      console.log('header',data.headers);
+      console.log('body',data.body);
+      environment.token = data.headers.get('auth-token');
+      let tempdata1 = data.body.data;
+      let tempdata :any
+      tempdata = this._authService.decrypt(tempdata1,environment.encToken);
+      console.log('body',tempdata);
+      if(tempdata.code==1){
+        if(tempdata.isData==1){
+            this.disabledScreen();
+            environment.isLogin = true;
+            environment.username = tempdata.result.profile.name;
+          this._router.navigateByUrl('/dashboard'); 
+           this.otp = '';
+        }
+      }else{
+        alert('error');
+      }
+      environment.token = data.headers.get('auth-token');
+    }, error=>this.errorMsg=error)
+  }
   otpVerify(){
     console.log('otp',this.otp);
     
@@ -65,8 +92,9 @@ export class LoginComponent implements OnInit {
       console.log('header',data.headers);
       console.log('body',data.body);
       environment.token = data.headers.get('auth-token');
-      let tempdata = data.body.data;
-      
+      let tempdata1 = data.body.data;
+      let tempdata :any
+      tempdata = this._authService.decrypt(tempdata1,environment.encToken);
 
       if(tempdata.code==1){
         if(tempdata.isData==1){
@@ -78,10 +106,14 @@ export class LoginComponent implements OnInit {
             if(tempdata.result.nextScreen == 'mobile'){
               this.emailFlag=true;
               this.OTPLabel = "Mobile OTP";
-              
            }
+           if(tempdata.result.nextScreen == 'final'){
+            this.final();
+          }
            this.otp = '';
         }
+      }else{
+        alert('error');
       }
       environment.token = data.headers.get('auth-token');
     }, error=>this.errorMsg=error)
@@ -106,18 +138,31 @@ onSubmit(){
           console.log('token',data.headers.get('auth-token'));
           environment.token = data.headers.get('auth-token');
           console.log('mydata',mydata);
+          if(mydata.code == '1'){
+            if(mydata.isData == '1'){
 
-          if(mydata.result.two_factor_authentication){
-            this.disabledScreen();
-            if(mydata.result.nextScreen == 'email'){
-              this.emailFlag=true;
-              this.OTPLabel = "Email OTP";
+              if(mydata.result.two_factor_authentication){
+                this.disabledScreen();
+                if(mydata.result.nextScreen == 'email'){
+                  this.emailFlag=true;
+                  this.OTPLabel = "Email OTP";
+                }
+                if(mydata.result.nextScreen == 'mobile'){
+                  this.emailFlag=true;
+                  this.OTPLabel = "Mobile OTP";
+                }
+               
+                
+              }else{
+                if(mydata.result.nextScreen == 'final'){
+                  console.log('final')
+                  this.final();
+                }
+              }
             }
-            if(mydata.result.nextScreen == 'mobile'){
-              this.emailFlag=true;
-              this.OTPLabel = "Mobile OTP";
-            }
+
           }
+          
 
 
           // environment.isLogin = true;
