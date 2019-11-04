@@ -25,8 +25,14 @@ export class ModuleService {
     return this.http.get<any>(this._url,{observe: 'response'}).pipe(
       map(data => {
         environment.token = data.headers.get('auth-token');
-        return data.body;
-     }
+        console.log(data.body);
+        if(data.body.code==1){
+          if(data.body.isData==1){
+            return data.body.result;
+          }
+        }
+        //return data.body;
+        }
     )).catch(this.errorHandar);          
   }
   saveModule(module){
