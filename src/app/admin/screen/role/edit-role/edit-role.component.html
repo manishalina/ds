@@ -32,9 +32,20 @@
                         
                     </form>
                     <div class="divider"></div>
+                    <div>
+
+                            <input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1" (change)="checkUncheckAll()"/> <strong>Select/ Unselect All</strong>
+                            <ul class="list-group">
+                                  <li class="list-group-item" *ngFor="let item of checklist">
+                                    <input type="checkbox" [(ngModel)]="item.isSelected" name="list_name" value="{{item.id}}" (change)="isAllSelected()"/>
+                                    {{item.value}}
+                                  </li>
+                                </ul>
+                    </div>
                     <div *ngFor="let modulename of modules;index as i">
                         <div class="row">
-                            <div class="col-sm-4">  
+                            <div class="col-sm-4"> 
+                     
                         <div class="position-relative form-check form-check-inline">
                                 <label class="">
                                 <!-- <input type="checkbox" id={{modulename._id}} (click)="setPermissionFn(modulename._id)" class="form-check-input">  -->

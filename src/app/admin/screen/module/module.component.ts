@@ -43,6 +43,7 @@ public errorMsg:any;
 
     })
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  
   }
   
   deleteRole(id): void {

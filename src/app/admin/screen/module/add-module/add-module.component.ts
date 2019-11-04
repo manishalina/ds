@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModuleService } from 'src/app/admin/services/module.service';
 import { Router } from '@angular/router';
+import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-add-module',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class AddModuleComponent implements OnInit {
 
   constructor(private _moduleService : ModuleService,
-    private _router:Router
+    private _router:Router,private confirmationDialogService: ConfirmationDialogService
     ) { }
   pageTitle='Module Add'
 public name:any;
@@ -26,8 +27,11 @@ public errorMsg:any;
     "isParent":this.isParent,
     "parent_id":this.parent_id
   }
-
-    //console.log('save',module);
+  this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to save ?')
+    .then((confirmed) => {
+      
+      if(confirmed){
+        //console.log('save',module);
     this._moduleService.saveModule(module).subscribe(data=>
       {
         if(data.code == 1){
@@ -36,6 +40,13 @@ public errorMsg:any;
       },
       error=>this.errorMsg=error
     );
+      }
+
+    })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  
+
+   
 
    
   }

@@ -28,6 +28,7 @@ export class UserService {
       map(data => {
         //console.log('my data',data);
         this.mydata =this.decrypt(data.data,'kingjuliean');
+        console.log('my data',this.mydata );
         return this.mydata;
         //return data;
      }

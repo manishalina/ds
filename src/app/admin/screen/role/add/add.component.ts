@@ -11,6 +11,8 @@ import { Observable } from 'rxjs/Observable';
 import { Employee } from '../../../classes/employee';
 import { Team } from '../../../classes/team';
 import { TeamManagementService } from '../../../services/team-management.service';
+import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmation-dialog.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -37,7 +39,8 @@ export class AddComponent implements OnInit {
 
   constructor(private _roleService : RoleService,
     private formBuilder: FormBuilder,
-    private teamMngService: TeamManagementService) { }
+    private teamMngService: TeamManagementService
+    ,private _router: Router,private confirmationDialogService: ConfirmationDialogService) { }
 
   public roles = [];
   public add_permission =true;
@@ -102,7 +105,12 @@ export class AddComponent implements OnInit {
         permission_map:[],
         role_id:""
       }
-      //console.log("===========",this.currentPermission)
+
+  this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to add ?')
+  .then((confirmed) => {
+    
+    if(confirmed){
+        //console.log("===========",this.currentPermission)
       for (var key in this.currentPermission) {
         //console.log("======================>"+key+"=="+this.currentPermission[key])
         let tobj={
@@ -112,11 +120,14 @@ export class AddComponent implements OnInit {
         fnobj.permission_map.push(tobj);
     }
     this._roleService.saveRole(fnobj).subscribe(data=>
-      console.log(data),
-      error=>this.errorMsg=error
+      this._router.navigate(['/role'])
+      
      );
-    
-    console.log("final===========",fnobj)
+    }
+
+  })
+  .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+
     }
 
    

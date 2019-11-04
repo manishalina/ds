@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModuleService } from 'src/app/admin/services/module.service';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/_services/toast.service';
+import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-edit-module',
@@ -18,7 +19,7 @@ export class EditModuleComponent implements OnInit {
 
   constructor(private _moduleService:ModuleService,
      private _router:Router,
-     private toastService: ToastService) { }
+     private toastService: ToastService,private confirmationDialogService: ConfirmationDialogService) { }
 
   ngOnInit() {
     this._moduleService.getmodule().subscribe(data=>
@@ -74,6 +75,12 @@ export class EditModuleComponent implements OnInit {
     "parent_id":this.parent_id,
     "module_id":this._moduleService.getModuleId()
   }
+
+  this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to update ?')
+    .then((confirmed) => {
+      
+      if(confirmed){
+     
     this._moduleService.saveModule(module).subscribe(data=>
       {
         if(data.code == 1){
@@ -95,5 +102,12 @@ export class EditModuleComponent implements OnInit {
       },
       error=>this.errorMsg=error
     );
+      }
+
+    })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  
+
+    
   }
 }
