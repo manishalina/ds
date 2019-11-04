@@ -23,11 +23,12 @@ export class EditModuleComponent implements OnInit {
   ngOnInit() {
     this._moduleService.getmodule().subscribe(data=>
       {
-        let tempModule:any = data.find(module =>module._id === this._moduleService.getModuleId());
-        this.name=tempModule.name;
-        this.url=tempModule.url;
-        this.parent_id=tempModule.isParent?tempModule.parent_id._id:'';
-        this.isParent=false;
+        console.log('data',data)
+        // let tempModule:any = data.find(module =>module._id === this._moduleService.getModuleId());
+        // this.name=tempModule.name;
+        // this.url=tempModule.url;
+        // this.parent_id=tempModule.isParent?tempModule.parent_id._id:'';
+        // this.isParent=false;
         // console.log('pa', tempModule);
         // console.log('pa', this.isParent);
         
@@ -35,10 +36,11 @@ export class EditModuleComponent implements OnInit {
       error=>this.errorMsg=error
     );
 
-    this._moduleService.getmodule().subscribe(data=>
-      this.modules = data,
-      error=>this.errorMsg=error
-    );
+    
+    // this._moduleService.getmodule().subscribe(data=>
+    //   this.modules = data,
+    //   error=>this.errorMsg=error
+    // );
   }
 
 

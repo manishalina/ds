@@ -24,7 +24,7 @@ export class ModuleService {
     this._url = this.apiPath+"/api/modules";
     return this.http.get<any>(this._url,{observe: 'response'}).pipe(
       map(data => {
-        //environment.token = data.headers.get('auth-token');
+        environment.token = data.headers.get('auth-token');
         return data.body;
      }
     )).catch(this.errorHandar);          

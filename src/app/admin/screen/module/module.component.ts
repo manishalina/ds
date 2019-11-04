@@ -24,6 +24,7 @@ public errorMsg:any;
   loadModule(){
     this._moduleService.getmodule().subscribe(data=>
       {
+        console.log(data);
          if(data.code == 1){
           if(data.isData==1){
             this.modules = data.result;
