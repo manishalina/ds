@@ -29,12 +29,12 @@ export class EditModuleComponent implements OnInit {
 
         let tempModule:any = data.find(module =>module._id === this._moduleService.getModuleId());
         //console.log(tempModule);
-        this.name=tempModule.name;
+        this.name=tempModule.label;
         this.url=tempModule.url;
         this.parent_id=tempModule.isParent?tempModule.parent_id._id:'';
         this.isParent=false;
-         console.log('name', this.name);
-         console.log('url', this.url);
+        //  console.log('name', this.name);
+        //  console.log('url', this.url);
         // console.log('pa', this.isParent);
         
       },
@@ -58,7 +58,7 @@ export class EditModuleComponent implements OnInit {
     }
     
     let module = {
-      "name":this.name,
+      "label":this.name,
       "url":this.url,
       "isParent":this.isParent,
       "parent_id":this.parent_id
@@ -69,7 +69,7 @@ export class EditModuleComponent implements OnInit {
 
   onsave() {
     let module = {
-    "name":this.name,
+    "label":this.name,
     "url":this.url,
     "isParent":this.isParent,
     "parent_id":this.parent_id,

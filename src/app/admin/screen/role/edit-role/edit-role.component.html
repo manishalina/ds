@@ -39,6 +39,10 @@
                                   <li class="list-group-item" *ngFor="let item of checklist">
                                     <input type="checkbox" [(ngModel)]="item.isSelected" name="list_name" value="{{item.id}}" (change)="isAllSelected()"/>
                                     {{item.value}}
+                                    <span *ngFor="let pr of item.permission;index as i;">
+                                        <input type="checkbox" [(ngModel)]="item.isSelected" name="list_name" value="{{pr.id}}" (change)="isAllSelected()"/>
+                                        {{pr.name}}
+                                    </span>
                                   </li>
                                 </ul>
                     </div>
@@ -48,15 +52,15 @@
                      
                         <div class="position-relative form-check form-check-inline">
                                 <label class="">
-                                <!-- <input type="checkbox" id={{modulename._id}} (click)="setPermissionFn(modulename._id)" class="form-check-input">  -->
-                                {{modulename.name}}
+                                <input type="checkbox" id={{modulename._id}} (click)="setectNuduleFn(modulename._id)" class="form-check-input"> 
+                                {{modulename.label}}
                             </label>
                             </div>
                             </div>
                         <div class="col-sm-8">
                             <div *ngFor="let pr of permission; index as j" class="position-relative form-check form-check-inline">
                                 <label class="">
-                                    <input type="checkbox"  [checked]="checkIfInMediaFromLead(pr._id,modulename._id)"  id={{pr._id}} (click)="setPermissionFn(pr._id,modulename._id)" class="form-check-input">{{pr.name}}</label>
+                                <input type="checkbox" [checked]="checkIfInMediaFromLead(pr._id,modulename._id)"  id={{pr._id}} (click)="setPermissionFn(pr._id,modulename._id)" class="form-check-input {{pr.name}}">{{pr.name}}</label>
                             </div>
                         </div>
                         </div>

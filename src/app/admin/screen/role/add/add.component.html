@@ -31,26 +31,51 @@
                     
                 </form>
                 <div class="divider"></div>
-                <div *ngFor="let modulename of modules;index as i">
-                    <div class="row">
-                        <div class="col-sm-4">  
-                      <div class="position-relative form-check form-check-inline">
-                            <label class="">
-                            <!-- <input type="checkbox" id={{modulename._id}} (click)="setPermissionFn(modulename._id)" class="form-check-input">  -->
-                            {{modulename.name}}
-                          </label>
-                          </div>
-                          </div>
-                      <div class="col-sm-8">
-                          <div *ngFor="let pr of permission; index as j" class="position-relative form-check form-check-inline">
-                              <label class="">
-                                <input type="checkbox"  id={{pr._id}} (click)="setPermissionFn(pr._id,modulename._id)" class="form-check-input">{{pr.name}}</label>
-                          </div>
-                      </div>
+                <div *ngFor="let pr1 of permission; index as k" class="position-relative form-check form-check-inline">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="mobile" placeholder="Enter Your mobile" id="{{pr._id}}" >
+                           <label class="custom-control-label" for="{{pr._id}}">{{pr1._id}}</label>
+                        </div>
                     </div>
-              </div>
+                <div class="card">
+                <div *ngFor="let modulename of modules;index as i">
+                    <div class="card-body">{{modulename.data[0].name}}</div>
+                        
+                    <div class="row" *ngFor="let mr of modulename.data;index as j">
+                        <div class="col-sm-4">  
+                        <div class="custom-control custom-checkbox position-relative form-check form-check-inline">
+                            <input type="checkbox" [(ngModel)]="mr.IsSelected" class="custom-control-input" name="mobile" placeholder="Enter Your mobile" id="{{mr.module._id}}" >
+                            <label class="custom-control-label" for="{{mr.module._id}}">{{mr.module.name}}</label>
+                        </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div *ngFor="let pr of mr.permission; index as k" class="position-relative form-check form-check-inline">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" name="mobile" placeholder="Enter Your mobile" id="{{mr.module._id+''+pr._id}}" (click)="setPermissionFn(pr._id,mr.module._id)" >
+                                   <label class="custom-control-label" for="{{mr.module._id+''+pr._id}}">{{mr.module._id}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
                 <div class="divider"></div>
                 <button class="btn btn-primary" (click)="finalfn()">Submit</button>
+
+
+
+                <div class="row">
+
+
+
+
+
+
+
+
+
+
+
             </div>
         </div>
     </div>

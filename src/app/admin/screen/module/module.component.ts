@@ -24,6 +24,26 @@ public errorMsg:any;
   loadModule(){
     this._moduleService.getmodule().subscribe(data=>
       {
+        console.log('module',data);
+        // let tempModule = [];
+        // let i=0;
+        // for (var key in data) {
+        //   if(data[key].isParent){
+        //     let obj={
+        //         'module':data[key],
+        //         'permission':[],
+        //         'name':data[key].parent_id.name
+        //       }
+        //     if(!tempModule[data[key].parent_id._id])
+        //     {
+        //       tempModule[data[key].parent_id._id]=[];
+        //     }
+        //     tempModule[data[key].parent_id._id].push(obj);
+        //     i++;
+        //   }
+          
+        // }
+        // console.log('final',tempModule);
         console.log(data);
         this.modules = data;
       },

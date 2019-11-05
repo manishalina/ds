@@ -57,11 +57,23 @@ ngOnInit() {
     );
     //console.log(this.modules);
     this._roleService.getpermission().subscribe(data=>
-      {
+    {
+        console.log('modules',this.modules);
         this.permission = data;
+        let tempPermission =[];
+        for (var key in this.modules) {
+          let obj = {
+            "module":this.modules[key],
+            "permission":this.permission
+          }
+          tempPermission[this.modules[key]._id]=obj;
+          //tempPermission.push(obj);
+        }
+        console.log('tempPermission',tempPermission);
+        //this.getCheckedItemList();
         //this.loadForm();
-      },error=>this.errorMsg=error
-      );
+    },error=>this.errorMsg=error
+    );
 
         this._roleService.getRole().subscribe(data=>
           {
@@ -89,17 +101,8 @@ ngOnInit() {
         },error=>this.errorMsg=error
       );
       this.masterSelected = false;
-      this.checklist = [
-        {id:1,value:'Elenor Anderson',isSelected:false},
-        {id:2,value:'Caden Kunze',isSelected:true},
-        {id:3,value:'Ms. Hortense Zulauf',isSelected:true},
-        {id:4,value:'Grady Reichert',isSelected:false},
-        {id:5,value:'Dejon Olson',isSelected:false},
-        {id:6,value:'Jamir Pfannerstill',isSelected:false},
-        {id:7,value:'Aracely Renner DVM',isSelected:false},
-        {id:8,value:'Genoveva Luettgen',isSelected:false}
-      ];
-      this.getCheckedItemList();
+     
+      
 }
 checkUncheckAll() {
   for (var i = 0; i < this.checklist.length; i++) {
@@ -115,6 +118,11 @@ isAllSelected() {
 }
 
 getCheckedItemList(){
+  this.checklist = [
+    {id:1,value:'Elenor Anderson',isSelected:true,permission:this.permission},
+    {id:2,value:'Caden Kunze',isSelected:true,permission:this.permission},
+  ];
+  console.log('this.checklist',this.checklist),
   this.checkedList = [];
   for (var i = 0; i < this.checklist.length; i++) {
     if(this.checklist[i].isSelected)
@@ -133,6 +141,11 @@ checkIfInMediaFromLead(pid,mid){
     }
 
   }
+
+}
+setectNuduleFn(id){
+  console.log('ids = ',id);
+
 
 }
     setPermissionFn(id,mid){

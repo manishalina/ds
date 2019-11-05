@@ -47,6 +47,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastComponent } from './toast/toast.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogService } from './confirmation-dialog/confirmation-dialog.service';
+
+import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
 //import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
@@ -91,6 +93,7 @@ import { ConfirmationDialogService } from './confirmation-dialog/confirmation-di
     BrowserAnimationsModule,
     ArchwizardModule,
     NgbModule,
+    NgMaterialMultilevelMenuModule,
 	  ToastrModule.forRoot()
   ],
   entryComponents: [ ConfirmationDialogComponent ],

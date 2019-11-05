@@ -8,6 +8,8 @@
  
 <button class="btn btn-info" (click)="showCustomToast(customTpl)" ngbTooltip="Will disappear in 15s">Custom toast</button>&nbsp; -->
 
+ <!-- <ng-material-multilevel-menu [configuration]='config' [items]='appitems' (selectedItem)="selectedItem($event)">
+</ng-material-multilevel-menu> -->
 
 <app-toasts></app-toasts>
 <div class="lessons-list" *ngIf="_authService.loggedIn() else loading">
@@ -18,6 +20,7 @@
             <div class="app-main">
                      <!-- side menu code start         -->
                       <app-sidemenu></app-sidemenu>
+                      
                     <!-- side menu code end         -->
                     <div class="app-main__outer">
                       <router-outlet></router-outlet>

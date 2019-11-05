@@ -9,7 +9,8 @@ export const environment = {
   encToken:'kingjuliean',
   token:'',
   isLogin:false,
-  username:''
+  username:'',
+  assignModule:''
 };
 
 /*

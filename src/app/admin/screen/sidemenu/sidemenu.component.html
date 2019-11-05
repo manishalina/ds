@@ -1,4 +1,4 @@
-<div class="app-sidebar sidebar-shadow">
+ <div class="app-sidebar sidebar-shadow">
         <div class="app-header__logo">
             <div class="logo-src"></div>
             <div class="header__pane ml-auto">
@@ -31,7 +31,7 @@
         </div>    
         <div class="scrollbar-sidebar">
             <div class="app-sidebar__inner">
-                <ul class="vertical-nav-menu">
+                <!-- <ul class="vertical-nav-menu">
                     
                         <li class="app-sidebar__heading">Dashboards</li>
                         <li>
@@ -41,56 +41,7 @@
                             </a>
                         </li>
 
-                            <!-- <li class="app-sidebar__heading">Master</li>
-                            <li class="" routerLinkActive="active-link">
-                                <a aria-expanded="false" style="cursor: pointer;">
-                                    <i class="metismenu-icon pe-7s-diamond"></i>
-                                    Master
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul class="mm-collapse" style="height: 7.04px;">
-                                   
-                                    <li>
-                                        <a routerLink="/module">
-                                            <i class="metismenu-icon">
-                                            </i>Module
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a routerLink="/role">
-                                            <i class="metismenu-icon">
-                                            </i>Role
-                                        </a>
-                                    </li>
-                                   <li>
-                                        <a routerLink="/permission">
-                                            <i class="metismenu-icon">
-                                            </i>Permission
-                                        </a>
-                                    </li> 
-                                   
-                                </ul>
-                            </li>
-                            <li class="app-sidebar__heading">User Management</li>
-                            <li class="">
-                                <a  aria-expanded="false" style="cursor: pointer;">
-                                    <i class="metismenu-icon pe-7s-diamond"></i>
-                                    User
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul class="mm-collapse" style="height: 7.04px;">
-                                    <li>
-                                        <a routerLink="/user">
-                                            <i class="metismenu-icon"></i>
-                                            User
-                                        </a>
-                                    </li>
-                                    
-                                    
-                                </ul>
-                            </li> -->
-
-                          
+                           
                             <li>
                                 <a routerLink="/module">
                                     <i class="metismenu-icon">
@@ -134,119 +85,13 @@
                    
 
 
-<!-- 
-                            <li class="app-sidebar__heading">User Management</li>
-                            <li class="">
-                                <a  aria-expanded="false" style="cursor: pointer;">
-                                    <i class="metismenu-icon pe-7s-diamond"></i>
-                                    User
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul class="mm-collapse" style="height: 7.04px;">
-                                    <li>
-                                        <a routerLink="/user">
-                                            <i class="metismenu-icon"></i>
-                                            User
-                                        </a>
-                                    </li>
-                                    
-                                    
-                                </ul>
-                            </li> -->
-                </ul>
-
-                <div class="">
-                    <div id="sidenav1">
-                      <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sideNavbar"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                      </div>
-                      <div class="collapse navbar-collapse" id="sideNavbar">
-                        <div class="panel-group" id="accordion">
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title"><a href=""><span class="glyphicon glyphicon-home"></span>Home</a> </h4>
-                            </div>
-                          </div>
-                          <div *ngFor = "let module of modules;index as i">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-book"> </span>{{module.name}}<span class="caret"></span></a> </h4>
-                                </div>
-                                <!-- Note: By adding "in" after "collapse", it starts with that particular panel open by default; remove if you want them all collapsed by default --> 
-                                <div id="collapseOne" class="panel-collapse collapse in">
-                                <ul class="list-group">
-                                    <li class="navlink2"><a href=""><span class="glyphicon glyphicon-book"></span></a></li>
-                                    <li><a href="" class="navlink">Link 1</a></li>
-                                    <li><a href="" class="navlink">Link 2</a></li>
-                                    <li><a href="" class="navlink">Link 3</a></li>
-                                    <li><a href="" class="navlink">Link 4</a></li>
-                                </ul>
-                                </div>
-                            </div>
-                          </div>
-                          <!-- <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-cog"> </span>Services<span class="caret"></span></a> </h4>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse">
-                              <ul class="list-group">
-                                <li class="navlink2"><a href="" class="navlink"><span class="glyphicon glyphicon-cog"></span>Overview</a></li>
-                                <li><a href="" class="navlink">Link 1</a></li>
-                                <li><a href="" class="navlink">Link 2</a></li>
-                                <li><a href="" class="navlink">Link 3</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="glyphicon glyphicon-calendar"> </span>Calendar<span class="caret"></span></a> </h4>
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse">
-                              <ul class="list-group">
-                                <li class="navlink2"><a href=""><span class="glyphicon glyphicon-calendar"></span>Overview</a></li>
-                                <li><a href="" class="navlink">Link 1</a></li>
-                                <li><a href="" class="navlink">Link 2</a></li>
-                                <li><a href="" class="navlink">Link 3</a></li>
-                                <li><a href="" class="navlink">Link 4</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <div class="panel panel-default">
-                            <div class="panel-heading">
-                              <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-user"></span> About Us<span class="caret"></span></a></h4>
-                            </div>
-                            <div id="collapseFour" class="panel-collapse collapse">
-                              <ul class="list-group">
-                                <li><a href="" class="navlink">Link 1</a></li>
-                                <li><a href="" class="navlink">Link 2</a></li>
-                                <li><a href="" class="navlink">Link 3</a></li>
-                                <li><a href="" class="navlink">Link 4</a></li>
-                                <li><a href="" class="navlink">Link 5</a></li>
-                              </ul>
-                            </div>
-                          </div> -->
-                          <!-- This is in case you want to add additional links that will only show once the Nav button is engaged; delete if you don't need -->
-                          <!-- <div class="menu-hide">
-                            <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title"><a href=""><span class="glyphicon glyphicon-new-window"></span>External Link</a> </h4>
-                              </div>
-                            </div>
-                            <div class="panel panel-default">
-                              <div class="panel-heading">
-                                <h4 class="panel-title"><a href=""><span class="glyphicon glyphicon-new-window"></span>External Link</a> </h4>
-                              </div>
-                            </div>
-                          </div> -->
-                          <!-- end hidden Menu items --> 
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                </ul> -->
+                <ng-material-multilevel-menu [configuration]='config' [items]='appitems' (selectedItem)="selectedItem($event)">
+                    </ng-material-multilevel-menu> 
+               
             </div>
         </div>
-    </div> 
+    </div>  
 
 
 
-  

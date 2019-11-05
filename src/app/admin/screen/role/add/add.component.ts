@@ -54,22 +54,48 @@ export class AddComponent implements OnInit {
 	
 	
     ngOnInit() {
-     
+      this._roleService.getpermission().subscribe(data=>
+        {
+          for (var key in data) {
+            data[key].selected = true;
+          }
+          console.log('data',data)
+          this.permission = data;
+        },error=>this.errorMsg=error
+        );
       this._roleService.getmodule().subscribe(data=>
         {
           this.module_name = data[0]._id;
-          this.modules = data;
-
+          //this.modules = data;
+          let tempModule = [];
+          let i=0;
+          for (var key in data) {
+            if(data[key].isParent){
+              let obj={
+                  'module':data[key],
+                  'permission':this.permission,
+                  'IsSelected':true,
+                  'name':data[key].parent_id.name
+                }
+              if(!tempModule[data[key].parent_id._id])
+              {
+                tempModule[data[key].parent_id._id]=[];
+              }
+              tempModule[data[key].parent_id._id].push(obj);
+              i++;
+            }
+            
+          }
+         
+          for (var key in tempModule) {
+            console.log(key);
+            this.modules.push({'data':tempModule[key]});
+          }
           console.log('module',this.modules);
         },error=>this.errorMsg=error
         );
         //console.log(this.modules);
-        this._roleService.getpermission().subscribe(data=>
-          {
-            this.permission = data;
-            //this.loadForm();
-          },error=>this.errorMsg=error
-          );
+        
 
     }
     setPermissionFn(id,mid){

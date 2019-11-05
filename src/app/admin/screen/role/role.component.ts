@@ -75,7 +75,10 @@ export class RoleComponent implements OnInit {
     }
   loadRole(){
     this._roleService.getRole().subscribe(data=>
-      this.roles = data,
+      {
+        console.log(data);
+        this.roles = data
+      },
       error=>this.errorMsg=error
       );
   }

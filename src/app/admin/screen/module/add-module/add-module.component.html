@@ -26,7 +26,7 @@
                         <select name="parent_id" [(ngModel)]="parent_id" class="mb-2 form-control-lg form-control" (change)="onChange($event.target.value)">
                           <option value="" selected>Parent</option>
                             <ng-container *ngFor="let module of modules;index as i">
-                                <option *ngIf="!module.isParent"  [ngValue]="module._id" >{{module.name}}</option>
+                                <option  [ngValue]="module._id" >{{module.label}}</option>
                               </ng-container>
                         </select>
                       </div>

@@ -59,30 +59,72 @@ export class LoginComponent implements OnInit {
   otp = "1";
 
   final(){
-    console.log('otp',this.otp);
+    //console.log('otp',this.otp);
     
     this._authService.twoFactorAuth({}).subscribe(
     data=>{
-      console.log('header',data.headers);
-      console.log('body',data.body);
+      // console.log('header',data.headers);
+      // console.log('body',data.body);
       environment.token = data.headers.get('auth-token');
       let tempdata1 = data.body.data;
       let tempdata :any
+      let modules=[];
       tempdata = this._authService.decrypt(tempdata1,environment.encToken);
       console.log('body',tempdata);
+      //console.log('body',tempdata.);
       if(tempdata.code==1){
         if(tempdata.isData==1){
-            this.disabledScreen();
-            environment.isLogin = true;
-            environment.username = tempdata.result.profile.name;
-          this._router.navigateByUrl('/dashboard'); 
+          environment.assignModule = tempdata.result.modules;
+
+          // console.log('testMenu',tempdata.result.testMenu);
+          // let tempdt =tempdata.result.testMenu;
+          // let tempModule = [];
+          // let i=0;
+          // for (var key in tempdt) {
+          //   if(tempdt[key].isParent){
+          //     let obj={
+          //         label: tempdt[key].name,
+          //         link: tempdt[key].url,
+          //         icon: 'favorite',
+          //         //'module':tempdt[key],
+          //         'permission':[],
+          //         'parent_name':tempdt[key].parent_id.name,
+          //         'parent_id':tempdt[key].parent_id._id
+          //       }
+          //     if(!tempModule[tempdt[key].parent_id._id])
+          //     {
+          //       tempModule[tempdt[key].parent_id._id]=[];
+          //     }
+          //     tempModule[tempdt[key].parent_id._id].push(obj);
+          //     i++;
+          //   }
+            
+          // }
+          // for (var key in tempModule) {
+          //   console.log(key , tempModule[key]);
+          //   console.log('--------------');
+          //   modules.push({'_id':key,link:'','label':tempModule[key][0].parent_name,"items":tempModule[key]});
+          //   //modules.push({'data':tempModule[key]});
+          // }
+          // console.log('final',modules);
+          // console.log('individual_permission',tempdata.result.permission.individual_permission);
+          // console.log(tempdata.result.permission.system_permission);
+          // console.log(tempdata.result.permission.system_permission.role.permission_map);
+          // let assignModule = tempdata.result.permission.system_permission.role.permission_map;
+          // environment.assignModule = assignModule;
+
+          console.log('env',environment.assignModule);
+           this.disabledScreen();
+           environment.isLogin = true;
+           environment.username = tempdata.result.profile.name;
+           this._router.navigateByUrl('/dashboard'); 
            this.otp = '';
         }
       }else{
         alert('error');
       }
       environment.token = data.headers.get('auth-token');
-    }, error=>this.errorMsg=error)
+    },error=>this.errorMsg=error)
   }
   otpVerify(){
     console.log('otp',this.otp);
@@ -164,17 +206,10 @@ onSubmit(){
       mydata =this._authService.decrypt(data.body.data,'kingjuliean');
         if(mydata.code==1){
         if(mydata.isData==1){
-          //   this.toastService.show(mydata.message, {
-          //   classname: 'bg-success text-light',
-          //   delay: 2000 ,
-          //   autohide: true,
-          //   headertext: 'Error'
-          // });
-         //environment.token= mydata.result.token.auth_token;
-          //environment.username=  mydata.result.profile.name;
-          console.log('token',data.headers.get('auth-token'));
+         
+          //console.log('token',data.headers.get('auth-token'));
           environment.token = data.headers.get('auth-token');
-          console.log('mydata',mydata);
+          //console.log('mydata',mydata);
           if(mydata.code == '1'){
             if(mydata.isData == '1'){
 
@@ -199,37 +234,6 @@ onSubmit(){
             }
 
           }
-          
-
-
-          // environment.isLogin = true;
-          // this._router.navigateByUrl('/dashboard'); 
-           //localStorage.setItem('islogin', mydata.result.token.auth_token);
-          // if(!mydata.result.two_factor_authentication)
-          // {
-          //  console.log("================================dashboard");
-          //  environment.isLogin = true;
-          //   this._router.navigateByUrl('/dashboard'); 
-          // }
-          // else{
-          //  // console.log("================================"+mydata.result.two_factor_authentication);
-          //   if(mydata.result.two_factor_authentication_type.email)
-          //   {
-          //     this.emailFlag=true;
-          //     this.loginFlag=false;
-          //   }
-            
-           
-          // }
-         
-          //environment.token= mydata.result.token.auth_token;
-          //console.log('login token',environment.token);
-          // console.log(mydata.result.token.auth_token);
-           //console.log("================================"+mydata);
-          //environment.username=  mydata.result.profile.name;
-          //this._router.navigateByUrl('/dashboard');
-
-          //window.location.href= '/dashboard';
         }
       }else{
         this.toastService.show("Error ! "+mydata.message, {

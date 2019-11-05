@@ -22,7 +22,7 @@ public modules:any;
 public errorMsg:any; 
   onsave() {
     let module = {
-    "name":this.name,
+    "label":this.name,
     "url":this.url,
     "isParent":this.isParent,
     "parent_id":this.parent_id
@@ -36,6 +36,8 @@ public errorMsg:any;
       {
         if(data.code == 1){
           this._router.navigateByUrl('/module');
+        }else{
+          
         }
       },
       error=>this.errorMsg=error
@@ -65,7 +67,7 @@ public errorMsg:any;
     }
     
     let module = {
-      "name":this.name,
+      "label":this.name,
       "url":this.url,
       "isParent":this.isParent,
       "parent_id":this.parent_id
